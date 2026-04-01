@@ -17,6 +17,21 @@ export const projects = [
     ],
   },
   {
+    slug: "redline",
+    name: "Redline",
+    url: "https://redline.com",
+    tagline: "Fundraising platform generating $5M annually",
+    summary:
+      "A fundraising platform built for organizations running campaigns at scale. Features SMS and email integration via Twilio, a progressive web app for field use on unreliable networks, and user process tracking that guides participants toward fundraising goals. Designed for real-world conditions — offline-capable, resilient to bad connectivity, and focused on driving measurable outcomes.",
+    tech: ["Kotlin", "Spring Boot", "React", "PostgreSQL", "Twilio", "PWA"],
+    highlights: [
+      "~$5M annual revenue",
+      "SMS and email campaign integration via Twilio",
+      "Progressive web app with offline support for field use on bad networks",
+      "User process tracking to guide participants toward fundraising goals",
+    ],
+  },
+  {
     slug: "property",
     name: "King County Assessor Analysis",
     url: "https://kc.iodesystems.com",

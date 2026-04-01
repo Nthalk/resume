@@ -24,7 +24,7 @@ export const resume = {
         "Built koog-claude-code, an LLM client bridging JetBrains' Koog agent framework with Claude Code via process management, stream parsing, and an embedded MCP tool server",
         "Built King County assessor analysis platform (kc.iodesystems.com) with interactive mapping (MapLibre/Protomaps), PostgreSQL analytics, automated data pipelines, and rigorous statistical methodology for valuation compliance",
         "Engineered self-serve AWS portal reducing client expenses by 75%",
-        "Released fundraising application generating $3M annually",
+        "Released Redline (redline.com), a fundraising platform generating $5M annually",
       ],
     },
     {

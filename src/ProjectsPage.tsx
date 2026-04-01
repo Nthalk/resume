@@ -58,7 +58,7 @@ export default function ProjectsPage() {
     <div className="page projects-page">
       <h1 className="page__title">Projects</h1>
       <p className="page__subtitle">
-        Open source libraries, agent platforms, and infrastructure tools.
+        All projects solo-developed. A collection of established work, open source libraries, and tools.
       </p>
       <div className="projects-grid">
         {projects.map((p) => (

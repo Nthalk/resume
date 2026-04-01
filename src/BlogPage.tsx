@@ -136,7 +136,7 @@ function PostList() {
         software in the age of automated development.
       </p>
       <div className="blog-list">
-        {posts.map((post) => (
+        {[...posts].sort((a, b) => b.date.localeCompare(a.date)).map((post) => (
           <Link
             key={post.slug}
             to={`/blog/${post.slug}`}
