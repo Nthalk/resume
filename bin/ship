@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+
+PROPS="ship.local.properties"
+if [[ ! -f "$PROPS" ]]; then
+  echo "Missing $PROPS — copy ship.example.properties and fill in values."
+  exit 1
+fi
+source "$PROPS"
+
+echo "Building..."
+npm run build
+
+echo "Uploading to s3://$S3_BUCKET..."
+aws --profile "$AWS_PROFILE" s3 sync dist/ "s3://$S3_BUCKET" --delete
+
+echo "Invalidating CloudFront cache..."
+aws --profile "$AWS_PROFILE" cloudfront create-invalidation \
+  --distribution-id "$CLOUDFRONT_DISTRIBUTION_ID" \
+  --paths "/*" \
+  --query "Invalidation.Id" \
+  --output text
+
+echo "Shipped."
