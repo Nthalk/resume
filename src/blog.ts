@@ -596,4 +596,197 @@ return {
 
 For each FAIL, suggest a concrete next step.`,
   },
+  {
+    slug: "project-lifecycle-stages",
+    title: "Alpha to Maintenance: Knowing Where Your Project Actually Is",
+    date: "2026-04-02",
+    summary:
+      "Formal definitions for project lifecycle stages — alpha, beta, fledgling, toddler, adolescent, prime, and maintenance — and what each demands right now to progress toward prime. Value defense runs through all of them.",
+    content: [
+      `**TL;DR:** Projects move through defined stages — alpha, beta, fledgling, toddler, adolescent, prime, maintenance — each with specific requirements for progression. Knowing your stage tells you what to work on now. Value defense — defining what matters and proving it's preserved — is the thread that runs through every stage. High velocity without value defense is how projects die fast.`,
+
+      `## Why stages matter`,
+
+      `Most projects don't fail because of bad code. They fail because the team is solving the wrong problems for the project's current stage. Optimizing deployment strategies during alpha is wasted effort. Ignoring data responsibility during fledgling is a time bomb. Building custom solutions before the fundamentals are stable is vanity engineering.`,
+
+      `Each stage has a specific job. Do that job, progress to the next stage. Skip it, and the debt compounds until it forces you back — or kills the project.`,
+
+      `## Alpha: placeholders and planning`,
+
+      `**Defining trait:** The system is mostly placeholders. Large planning stack. Core architecture is being discovered, not refined.`,
+
+      `**The job:** Prove the concept works. Validate the architecture by building just enough to see if the pieces fit. Placeholders are expected and healthy — they mark the territory without committing to implementation details.`,
+
+      `**What to do now:**
+- Build the skeleton. Stubs, interfaces, data models.
+- Define the feature map, even if every feature says "missing."
+- Establish the test harness — even if few tests exist, the infrastructure to run them must.
+- Write ARCHITECTURE.md. The earlier this exists, the fewer wrong turns agents take.`,
+
+      `**What not to do:** Optimize. Scale. Polish UI. Worry about deployment automation. These are distractions from proving the concept.`,
+
+      `**Value defense at alpha:** Define what "done" means for the project. What problem does this solve? Who is it for? Write it down. If you can't articulate the value proposition now, velocity will carry you away from it. This is where "move fast and figure it out later" starts accumulating invisible debt — not code debt, value debt. You're building something and nobody has defined what makes it worth building.`,
+
+      `## Beta: no more placeholders`,
+
+      `**Defining trait:** All placeholders are replaced with real implementations. Large planning stack remains. The system works end-to-end but isn't hardened.`,
+
+      `**The job:** Complete the surface area. Every feature has a real implementation, even if it's rough. The planning stack is about refinement, not discovery.`,
+
+      `**What to do now:**
+- Replace every stub with a working implementation.
+- Full test coverage of core paths — not edge cases yet, but the happy path must be verified.
+- API contracts stabilize. Consumers can start building against them.
+- Demo everything. If you can't demo it, it's not beta — it's still alpha with fewer TODOs.`,
+
+      `**What not to do:** Ship to real users with real data. The system works, but it hasn't proven it's responsible with what it's given.`,
+
+      `**Value defense at beta:** Revisit the value proposition. Now that the system exists end-to-end, does it actually deliver what was promised? This is where you discover that the feature you thought was the point isn't — or that the real value is in something you built as a side effect. Adjust the definition of value. Don't let momentum carry you past this checkpoint.`,
+
+      `## Fledgling: data responsibility`,
+
+      `**Defining trait:** The system handles real data — or is about to. The question shifts from "does it work?" to "can it be trusted?"`,
+
+      `**The job:** Prove the system is responsible with data. Backup strategies, data integrity checks, migration paths, audit trails. This is where you earn the right to hold someone's information.`,
+
+      `**What to do now:**
+- Backup and restore procedures — tested, not just documented.
+- Data migration strategy. Schema changes must be non-destructive.
+- Audit logging for sensitive operations.
+- Input validation hardened. Edge cases in data handling become real bugs now.
+- Privacy and retention policies if handling PII.`,
+
+      `**What not to do:** Invite users before backups work. "We'll add backups later" is the fledgling-stage equivalent of deleting tests — the agent rationalizes it, the project pays for it.`,
+
+      `**Value defense at fledgling:** The value proposition now includes trust. Users give you their data. If you lose it, the value is negative — you've actively harmed them. Data responsibility is value defense. Every backup test, every migration dry-run, every audit log entry is defending the value you've promised.`,
+
+      `## Toddler: stability and observability`,
+
+      `**Defining trait:** Real users, real data, real consequences. The system needs to stay up, perform consistently, and recover from failures.`,
+
+      `**The job:** Make the system observable and stable. Performance metrics, deployment strategies, monitoring, alerting. This is where "it works on my machine" dies.`,
+
+      `**What to do now:**
+- Performance baselines. Response times, query counts, memory usage — measured, not guessed.
+- Deployment automation. Repeatable, rollback-capable deploys.
+- Health checks and uptime monitoring.
+- Error tracking with actionable alerts — not a dashboard nobody watches.
+- Load testing against realistic traffic patterns.
+- Backup stories verified under production conditions.`,
+
+      `**What not to do:** Add features at the expense of stability. The toddler stage is about making what exists reliable, not making it bigger.`,
+
+      `**Value defense at toddler:** Value is now measurable. Users are using the system — you can see what they use, what they ignore, what breaks. Performance regressions destroy value silently. A feature that works but takes 8 seconds is a feature that drives users away. Metrics are value defense. Outlier reporting is value defense. Every KPI threshold you set is a line drawn around the value you've built.`,
+
+      `## Adolescent: distribution and scale`,
+
+      `**Defining trait:** Single-server architecture hits its limits. The system needs to serve more users, more locations, more load than one box can handle.`,
+
+      `**The job:** Multi-server deployments, distributed metrics, service boundaries. The system grows from a single process to a coordinated set of services.`,
+
+      `**What to do now:**
+- Service decomposition where load demands it — not everywhere, just where single-server bottlenecks appear.
+- Distributed metrics and centralized logging. You can't debug distributed systems by SSH-ing into one box.
+- Multi-region or multi-server deployment strategies.
+- API versioning becomes critical — downstream consumers can't absorb breaking changes at your deployment pace.
+- Capacity planning based on growth data, not guesses.`,
+
+      `**What not to do:** Distribute prematurely. If one server handles your load, the complexity of distribution is pure cost. Adolescent is a stage you enter because the toddler outgrew its environment, not because microservices are fashionable.`,
+
+      `**Value defense at adolescent:** Scale failures are value failures. A system that can't handle its own success is destroying the value it created. But over-engineering for scale you don't have yet is also value destruction — it's spending resources on infrastructure instead of the product. Value defense at this stage means scaling in response to measured need, not anticipated need.`,
+
+      `## Prime: custom solutions to unsolved problems`,
+
+      `**Defining trait:** The fundamentals are solid. The system is stable, observable, scalable, data-responsible. What's left are the hard problems — the ones unique to your domain that nobody else has solved.`,
+
+      `**The job:** Build the things that make this system uniquely valuable. Custom algorithms, novel UX patterns, domain-specific optimizations that can't be bought off the shelf. Very few projects reach this stage.`,
+
+      `**What to do now:**
+- Identify the unique pain points your users have that no existing tool addresses.
+- Build custom solutions informed by the data and experience accumulated through prior stages.
+- Contribute to the ecosystem — open source the reusable parts, publish the patterns.
+- This is where deep domain expertise meets engineering capability.`,
+
+      `**Why few projects get here:** Most projects get stuck in perpetual toddler or adolescent — forever chasing stability or scale, never reaching the stage where they solve truly novel problems. The projects that reach prime did the boring work at every prior stage. They earned the right to do interesting work by building a foundation that doesn't demand constant attention.`,
+
+      `**Value defense at prime:** The value is the custom solution itself. Defend it by documenting why it exists, how it works, and what problem it solves that alternatives don't. Prime-stage work is the hardest to replace and the easiest to lose — one architectural regression can collapse months of domain-specific engineering.`,
+
+      `## Maintenance: defending what exists`,
+
+      `**Defining trait:** The system is feature-complete for its current scope. Development shifts from building to preserving.`,
+
+      `**The job:** Security patches, dependency updates, vulnerability response, issue triage. The system runs, and the job is keeping it running safely.`,
+
+      `**What to do now:**
+- Dependency update cadence. Automated where possible, reviewed where necessary.
+- Security vulnerability scanning and response procedures.
+- Issue triage — distinguish between bugs that threaten value and bugs that are cosmetic.
+- Keep the test suite green. Maintenance-mode test rot is how systems become unmaintainable.
+- Deprecation planning for the eventual replacement.`,
+
+      `**What not to do:** Add features without re-entering an earlier stage. Maintenance mode is stable because the scope is fixed. New features change the scope, which means the project is no longer in maintenance — it's back in toddler or adolescent, and it needs the infrastructure of that stage.`,
+
+      `**Value defense at maintenance:** The value is fully realized and the job is preservation. Every unpatched vulnerability is value at risk. Every ignored dependency update is a future emergency. Maintenance is not glamorous, but it's where value is most easily destroyed by neglect.`,
+
+      `## Value defense: the thread through every stage`,
+
+      `At every stage, the question is the same: what is the value this project delivers, and how do we prove it's being preserved?`,
+
+      `- At alpha, value is a hypothesis. Define it.
+- At beta, value is testable. Verify it.
+- At fledgling, value includes trust. Earn it.
+- At toddler, value is measurable. Measure it.
+- At adolescent, value is at scale. Sustain it.
+- At prime, value is unique. Protect it.
+- At maintenance, value is complete. Preserve it.`,
+
+      `High velocity without value defense is the most dangerous failure mode in LLM-driven development. You can ship ten features a day and destroy value with every one — features nobody asked for, regressions in features people depend on, performance degradation that makes the system worse to use. Velocity is not value. Shipping is not progress. The only progress is defended, measured, verified value delivery.`,
+
+      `Low observability compounds the problem. If you can't see whether value is being preserved, you can't defend it. Metrics, KPI outlier reporting, test coverage, demo recordings — these aren't overhead. They're the instruments that tell you whether your velocity is building value or destroying it.`,
+
+      `Know your stage. Do the work that stage demands. Defend the value at every step. That's how projects reach prime instead of dying fast.`,
+    ],
+    compliancePrompt: `Audit this project's lifecycle stage and readiness for progression. Every project stage has specific requirements — skipping them creates debt that compounds. Identify the project's current stage and check readiness for the next. Report PASS, FAIL, or N/A with a one-line explanation:
+
+**Stage identification:**
+0. Current stage: Based on the evidence below, what stage is this project in? (alpha/beta/fledgling/toddler/adolescent/prime/maintenance)
+
+**Alpha → Beta readiness:**
+1. Placeholder elimination: Are all stubs and placeholder implementations replaced with real code?
+2. Architecture documentation: Does ARCHITECTURE.md or equivalent exist and reflect the current system?
+3. Test harness: Is the test infrastructure in place, even if coverage is incomplete?
+4. Feature map: Is there a machine-readable inventory of features and their statuses?
+
+**Beta → Fledgling readiness:**
+5. End-to-end functionality: Does every defined feature have a working implementation (not stubs)?
+6. API contract stability: Are API contracts defined and stable enough for consumers to build against?
+7. Core path coverage: Are happy-path tests passing for all core features?
+8. Demoability: Can every feature be demonstrated with recorded evidence?
+
+**Fledgling → Toddler readiness:**
+9. Backup and restore: Are backup procedures tested and verified, not just documented?
+10. Data migration: Are schema changes handled through non-destructive migrations?
+11. Audit logging: Are sensitive operations logged with an audit trail?
+12. Input validation: Is input validation hardened beyond happy-path assumptions?
+
+**Toddler → Adolescent readiness:**
+13. Performance baselines: Are response times, query counts, and resource usage measured with branch-level baselines?
+14. Deployment automation: Are deploys repeatable with rollback capability?
+15. Monitoring and alerting: Are health checks, uptime monitoring, and actionable error alerts in place?
+16. Load testing: Has the system been tested against realistic traffic patterns?
+
+**Adolescent → Prime readiness:**
+17. Service boundaries: Are services decomposed where load demands it (not prematurely)?
+18. Distributed observability: Are metrics centralized and logs aggregatable across services?
+19. API versioning: Are breaking changes managed through versioned APIs?
+20. Capacity planning: Is scaling driven by measured growth data, not speculation?
+
+**Value defense (all stages):**
+21. Value definition: Is the project's value proposition written down and current?
+22. Value measurement: Are there metrics that track whether the system is delivering its stated value?
+23. Regression detection: Do tests, KPIs, and outlier reports catch value-destroying changes?
+24. Observability: Can the team see whether velocity is building or destroying value?
+
+For each FAIL, suggest a concrete next step.`,
+  },
 ];
