@@ -105,16 +105,21 @@ export const posts: BlogPost[] = [
 
       `That's the new project manager. Technical to the core.`,
     ],
-    compliancePrompt: `Audit this project for velocity-readiness. High-velocity LLM-driven development requires infrastructure that maintains quality without blocking speed: automated staging, test tooling, metrics baselines, and architectural guardrails. Check each item and report PASS, FAIL, or N/A with a one-line explanation:
+    compliancePrompt: `Audit this project for velocity-readiness. High-velocity LLM-driven development requires infrastructure that maintains quality without blocking speed: automated staging, test tooling, metrics baselines, architectural guardrails, and alignment mechanisms. Check each item and report PASS, FAIL, or N/A with a one-line explanation:
 
 1. Staging pipeline: Can a branch deploy to staging automatically after passing CI? Is there a clear gate between staging and production?
 2. Test CLI: Is there a single command that runs the full test plan against a live or temporary environment? Does it support recording demos?
 3. Per-test metrics: Do tests report timing and resource usage? Is there a branch-level baseline for outlier detection?
 4. Artifact server: Are test logs, metrics, and demo videos stored per-branch and referenced in PRs or reports?
-5. KPI outlier reporting: Are performance indicators tracked with threshold-based alerting, showing only regressions?
+5. KPI outlier reporting: Are performance indicators tracked with threshold-based alerting, showing only regressions — not dashboards of everything?
 6. Feature map: Is there a machine-readable feature inventory that tracks spec coverage, test coverage (API + UI), and demo status?
 7. Architectural guardrails: Are dependency rules, naming conventions, and module boundaries enforced by tooling (linters, CI, pre-commit hooks)?
 8. Self-steering codebase: Do error messages, CLAUDE.md/ARCHITECTURE.md, and module READMEs exist such that an LLM with no prior context can make correct changes or be told how?
+9. Work-to-value correlation: Is feature completeness, test coverage, and spec compliance tracked automatically — not by a human updating tickets?
+10. Alignment mechanism: Is there a process ensuring work being done is the right work (architectural fit, product direction) — not just fast work?
+11. Explicit over implicit: Are patterns visible in the files being edited, or do they rely on conventions an agent won't know?
+12. Error messages that guide: Do build/test failures tell the agent what to do differently, or just report a stack trace?
+13. Team scaling model: Is the project structured so one senior developer can maintain alignment across the full system, or does it require coordination meetings to stay coherent?
 
 For each FAIL, suggest a concrete next step.`,
   },
@@ -161,6 +166,22 @@ For each FAIL, suggest a concrete next step.`,
 
       `**Version your interfaces.** With parallel agents, interface contracts are coordination points. Changing a shared interface without versioning it silently breaks every other session's work.`,
 
+      `## Automate conformance — lint everything, ban everything you can`,
+
+      `At human velocity, you can rely on convention and code review to enforce rules. At agent velocity, every rule that isn't automated is a rule that will be broken. The agent doesn't know your conventions unless the tooling tells it.`,
+
+      `**Lint every layer.** ESLint, detekt, ktlint, checkstyle, clippy — whatever your stack has, turn it on, configure it strictly, and run it in CI and pre-commit. Don't just lint style. Lint architecture: banned imports, dependency direction, module boundary violations. Tools like ESLint's \`no-restricted-imports\`, ArchUnit, or custom detekt rules let you encode "module A must not depend on module B" as a failing build.`,
+
+      `**Define explicit bans.** If something shouldn't be used — a deprecated API, a dangerous pattern, a banned dependency — make it a lint rule, not a comment. \`@Suppress\` and \`eslint-disable\` should require justification (and clown-check catches unjustified suppressions). Bans are cheaper than cleanup.`,
+
+      `**Type-check strictly.** \`strict: true\` in TypeScript. Explicit nullability in Kotlin. Every type hole is a place where an agent will silently do the wrong thing. The stricter the type system, the narrower the space of valid programs, the fewer ways the agent can go wrong.`,
+
+      `**Format on save, format on commit.** Formatting debates are zero-value. Prettier, ktfmt, gofmt — pick one, enforce it, never discuss it again. Agents produce inconsistent formatting across sessions. Autoformatting makes every diff about logic, not whitespace.`,
+
+      `**Pre-commit hooks as the last gate.** Everything above — linting, formatting, type-checking, clown-check — runs before code enters the repo. The agent gets immediate feedback: "this violates the dependency rule between X and Y." Fast feedback is how agents self-correct. Slow feedback (CI failure 10 minutes later) means the agent has already moved on and built on top of the violation.`,
+
+      `The principle: if a human would catch it in review, automate it. If you can state it as a rule, it's a lint rule. The tighter the rails, the less review surface remains for humans. What's left is the genuinely hard stuff — architectural fitness, product judgment, "does this actually solve the problem" — which is where human time should go.`,
+
       `## The human role changes`,
 
       `In a ralph loop, you're not writing most of the code. You're deciding what "rational" means for this system — setting constraints, reviewing architecture, catching drift that no individual PR reveals.`,
@@ -187,6 +208,12 @@ For each FAIL, suggest a concrete next step.`,
 7. Immutable checkpoints: Does every PR leave the system in a deployable state? Are there "fix it in the next PR" chains?
 8. Interface versioning: Are shared interfaces versioned or contracted so parallel work doesn't silently break?
 9. Review cadence: Does review frequency match commit frequency, or are unreviewed changes accumulating?
+10. Linting coverage: Are linters configured and enforced for every language in the project (ESLint, detekt, ktlint, clippy, etc.)?
+11. Architectural lint rules: Are dependency direction and module boundary violations enforced by tooling (no-restricted-imports, ArchUnit, custom rules)?
+12. Explicit bans: Are deprecated APIs, dangerous patterns, and banned dependencies encoded as lint rules rather than documented conventions?
+13. Strict type-checking: Is strict mode enabled (TypeScript strict, explicit nullability) to narrow the space of valid programs?
+14. Autoformatting: Is formatting enforced automatically (Prettier, ktfmt, gofmt) on commit or save?
+15. Pre-commit hooks: Do linting, formatting, type-checking, and review hooks run before code enters the repo?
 
 For each FAIL, suggest a concrete next step.`,
   },
@@ -271,6 +298,9 @@ EOF
 5. Automated progress tracking: Does test pass/fail status automatically update feature progress without manual ticket management?
 6. Demo recording: Is there a command that records video evidence of features being exercised?
 7. Derived state: Do all project management tools derive their state from the code, or do they require manual sync with an external system?
+8. Feature lifecycle: Do features follow a defined progression (e.g. missing → spec → API tests → UI tests → demo → complete)?
+9. Minimal input: Can the most common workflow actions be performed with zero or one argument?
+10. Progressive detail: Does tooling support broad-to-narrow drill-down — overview first, then per-feature, then per-layer?
 
 For each FAIL, suggest a concrete next step.`,
   },
@@ -357,6 +387,9 @@ For each FAIL, suggest a concrete next step.`,
 6. Test weakening detection: Does the review catch loosened assertions, removed edge cases, or downgraded checks?
 7. Scaffolding vs implementation distinction: Does the review process distinguish between scaffolding commits (TODOs expected) and implementation commits (TODOs = incomplete)?
 8. Binary output: Does the review produce a clear PASS/FAIL result, not a nuanced suggestion?
+9. Prompt isolation: Is the reviewer prompt static and context-free — no shared conversation history with the coding session?
+10. Overhead budget: Does the review hook complete in under 30 seconds, keeping it viable in fast iteration loops?
+11. Commit message justification: When tests are deleted or coverage decreases, does the process require an explanation in the commit message?
 
 For each FAIL, suggest a concrete next step.`,
   },
@@ -455,9 +488,11 @@ app.users() |> filter(u => u.active) |> sort("name") |> map(u => u.name)
 2. Composition in one call: Can the model compose multi-step operations (filter, transform, aggregate) in a single tool call, or does it require multiple round trips?
 3. Runtime discovery: Are tool capabilities discoverable at runtime (e.g. help()) rather than baked into the system prompt?
 4. Prompt stability: Does adding a new capability (new MCP server, new command set) grow the system prompt, or does it stay constant?
-5. Escaping safety: Are complex strings (file paths, regex, multi-line content) passed as structured data to avoid double-escaping issues?
-6. Execution safety: Are eval/script tools sandboxed with step limits, timeouts, and output caps?
-7. Multi-server bridging: Can the model call capabilities from multiple backend servers in a single expression?
+5. KV cache stability: Does the tool schema remain constant across requests, allowing the KV cache to stay warm?
+6. Escaping safety: Are complex strings (file paths, regex, multi-line content) passed as structured data to avoid double-escaping issues?
+7. Execution safety: Are eval/script tools sandboxed with step limits, call depth limits, timeouts, and output caps?
+8. Multi-server bridging: Can the model call capabilities from multiple backend servers in a single expression?
+9. Round-trip efficiency: What is the average number of tool calls per task? Is it close to 1?
 
 For each FAIL, suggest a concrete next step.`,
   },
@@ -548,14 +583,16 @@ return {
     compliancePrompt: `Audit this project for transparency architecture. Applications that explain their own reasoning — with structured, referenced, testable explanation objects — are partially self-reviewing. Check each item and report PASS, FAIL, or N/A with a one-line explanation:
 
 1. Explanation data objects: Are computation results accompanied by structured explanation objects (not just UI labels)?
-2. Source references: Do explanation objects carry references back to the code that generated them (file, function, line)?
+2. Source references: Do explanation objects carry references back to the code that generated them (file, function, line range)?
 3. Method transparency: Does each explanation state what method/algorithm was used to produce the result?
 4. Input visibility: Does each explanation list the inputs and data sources that fed the computation?
 5. UI drill-down: Can users drill into results to see methodology, inputs, and confidence metrics?
 6. API accessibility: Are explanation objects available at the API layer, not just rendered in the UI?
 7. Testable agreement: Are there tests that verify the explanation metadata matches the actual code path taken?
-8. Domain specificity: Are explanations written in domain-specific terms, not generic "computed value" labels?
-9. Audit trail: Can a compliance process or LLM reviewer programmatically audit explanations across the system?
+8. Explanation-as-contract: When code changes, does a stale explanation cause a test failure — or does it silently drift?
+9. Domain specificity: Are explanations written in domain-specific terms, not generic "computed value" labels?
+10. Audit trail: Can a compliance process or LLM reviewer programmatically audit explanations across the system?
+11. Code-range references: Do source references use line ranges (e.g. L142-L198) for precise debugging, not just function names?
 
 For each FAIL, suggest a concrete next step.`,
   },

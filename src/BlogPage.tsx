@@ -130,10 +130,11 @@ function PostView({ post }: { post: (typeof posts)[0] }) {
 function PostList() {
   return (
     <>
-      <h1 className="page__title">Blog</h1>
+      <h1 className="page__title">Tips & Hard Lessons Learned</h1>
       <p className="page__subtitle">
         Thoughts on multi-agent orchestration, LLM tool design, and building
-        software in the age of automated development.
+        software in the age of automated development. Every article includes an
+        LLM compliance prompt so you can align your projects.
       </p>
       <div className="blog-list">
         {[...posts].sort((a, b) => b.date.localeCompare(a.date)).map((post) => (
