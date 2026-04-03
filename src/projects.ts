@@ -19,7 +19,7 @@ export const projects = [
   {
     slug: "redline",
     name: "Redline",
-    url: "https://redline.com",
+    url: "https://redline1hr.com",
     tagline: "Fundraising platform generating $5M annually",
     summary:
       "A fundraising platform built for organizations running campaigns at scale. Features SMS and email integration via Twilio, a progressive web app for field use on unreliable networks, and user process tracking that guides participants toward fundraising goals. Designed for real-world conditions — offline-capable, resilient to bad connectivity, and focused on driving measurable outcomes.",
