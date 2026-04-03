@@ -13,97 +13,83 @@ export const posts: BlogPost[] = [
     title: "The New Project Manager Is a Senior Developer",
     date: "2026-04-01",
     summary:
-      "Non-technical PMs can't keep pace with LLM-driven velocity. The role now belongs to senior developers defending quality, managing debt, and designing self-steering codebases.",
+      "Non-technical PMs can't survive LLM velocity. The role belongs to senior devs defending architecture, managing debt, and designing codebases that steer agents toward correct answers.",
     content: [
-      `**TL;DR:** LLM velocity makes non-technical project management untenable. The new PM is a senior dev whose job is architectural compliance, tech debt defense, and designing codebases that steer agents toward correct answers.`,
+      `**TL;DR:** The PM role now belongs to a senior dev. Their job: architectural compliance, tech debt defense, and codebases that steer agents toward correct answers. Non-technical management can't survive LLM velocity.`,
 
-      `## The old model worked because velocity was human-limited`,
+      `## The old model died on schedule`,
 
-      `Project management made sense as a separate discipline when the bottleneck was coordination. Shipping took weeks. The engineers were experienced in their domain, led by people who understood the project. A non-technical PM could track timelines and manage dependencies because the pace of change was slow enough to track.`,
+      `Project management worked as its own discipline when shipping took weeks. A non-technical PM could track timelines because the architecture moved slowly enough to track. Bad decisions surfaced with time to fix them. The PM correlated work to value — and that was genuinely hard to automate when velocity was human-limited.`,
 
-      `The PM didn't need to understand the architecture because the architecture moved slowly. Decisions were made in meetings, enforced by senior engineers. Bad decisions surfaced with time to course-correct.`,
-
-      `The PM's core job was correlating work done to value delivered — tracking whether effort was moving the project toward its goal. That correlation was hard to automate when velocity was human-limited and the mapping from tasks to outcomes required institutional context. It isn't anymore.`,
-
-      `That model is dead.`,
+      `It isn't anymore.`,
 
       `## Velocity broke the abstraction`,
 
-      `Agents produce in an afternoon what used to take a sprint. Multiple projects in parallel, each generating PRs faster than anyone can review. I'm managing several projects simultaneously, and the primary activity isn't coordination — it's corralling bad architectural decisions made by LLMs.`,
+      `Agents produce in an afternoon what used to take a sprint. I'm managing several projects simultaneously, and the primary activity isn't coordination — it's corralling bad architectural decisions before they metastasize.`,
 
-      `The old bottlenecks — focus, heads-down time, individual skill — don't limit throughput anymore. What limits throughput now is alignment: ensuring that the work being done is the right work, done the right way, fitting into the right architecture. An LLM can correlate work-done to value-delivered as well as any PM — tracking feature completeness, test coverage, spec compliance. That was the PM's job. It's automatable now. What isn't automatable is the architectural judgment to know when the automated correlation is wrong.`,
+      `The old bottlenecks — focus, heads-down time, skill — are gone. What limits throughput now is alignment. An LLM can track feature completeness, test coverage, and spec compliance as well as any PM. That was the PM's job. What isn't automatable is the judgment to know when the automated tracking is wrong.`,
 
-      `Non-technical PMs never really looked at PRs anyway — they reviewed test plans. But now that everyone with an LLM considers themselves a project manager, PRs are completely ignored. Code goes up, nobody reviews the architecture, and it lands in staging before anyone with technical judgment sees it.`,
+      `Non-technical PMs never really looked at PRs — they reviewed test plans. Now that everyone with an LLM considers themselves a project manager, nobody reviews the architecture at all. Code lands in staging before anyone with technical judgment sees it.`,
 
-      `The only hope of saving your project is a test suite, a verifiable test plan, and video demos. That's the review surface now. I routinely receive a batch of test plans and demo recordings to review, submit change requests on, and send back for rework — and this is after the code has already hit staging. That's by design. Blocking merges and rebasing complicated features to enforce quality gates kills the velocity you're trying to preserve. Let it into staging. Don't let it into production. Staging is the review environment, not the "it's almost done" environment.`,
+      `So: let it into staging. Don't let it into production. Staging is the review environment, not the "it's almost done" environment. I review batches of test plans and demo recordings, submit change requests, send back for rework. All after the code has hit staging. Blocking merges to enforce quality gates kills the velocity you're trying to preserve.`,
 
-      `The review surface also includes measurable performance indicators — response times, bundle sizes, query counts, memory usage. A feature can pass every test and still be a regression if it doubles the p95 latency. But at high velocity you can't drown in dashboards. The right approach is outlier-only reporting: don't show me the 50 KPIs that are fine, show me the 3 that moved. If nothing crossed a threshold, the report is empty and I move on.`,
+      `A feature can pass every test and still be a regression if it doubles p95 latency. But you can't drown in dashboards. Outlier-only reporting: show me the 3 KPIs that moved, not the 50 that are fine. If nothing crossed a threshold, the report is empty. I move on.`,
 
-      `This means the quality gate shifts. It's no longer "does this PR look right?" It's "does this feature work correctly, match the spec, not break what was already working, and not degrade performance?" That's a test plan, a demo, and an outlier report — not a diff review.`,
+      `The quality gate is no longer "does this PR look right?" It's a test plan, a demo, and an outlier report.`,
 
       `## The new role: quality at velocity`,
 
-      `The person managing an LLM-driven project needs to be a senior developer. Not because they're writing all the code, but because the job is now:`,
+      `The person managing an LLM-driven project needs to be a senior developer. Not because they write the code. Because the job is now:`,
 
-      `- **Architectural compliance.** Every PR must conform to the system's dependency structure, naming conventions, and data flow patterns. Agents don't intuit these. Someone enforces them.
-- **Tech debt triage.** LLMs produce debt at the same velocity they produce features. A week of unmanaged agent development creates months of cleanup. Catch it in real time or don't catch it at all.
-- **Future-proofing.** Agents optimize for the immediate task. They don't consider how today's decision constrains tomorrow's options. That requires deep technical understanding.`,
+      `- **Architectural compliance.** Agents don't intuit your dependency structure. Someone enforces it.
+- **Tech debt triage.** One week of unmanaged agent dev creates months of cleanup. Catch it now or don't catch it.
+- **Future-proofing.** Agents optimize for the immediate task. They don't care that today's shortcut kills tomorrow's options.`,
 
-      `This is where the true differentiators will be. Not who ships fastest — everyone has the same models. The gap: teams that maintain quality at velocity vs. teams that ship fast and drown in debt.`,
+      `Everyone has the same models. The gap isn't who ships fastest. It's who maintains quality at speed vs. who drowns in debt.`,
 
-      `The likely team structure converges to one senior developer per project set — where "project set" is bounded by how much product and architectural context one person can hold. Not how much code they can write. Not how many hours they have. How many systems they can maintain alignment across. That's the saturating resource now.`,
+      `Team structure converges to one senior dev per project set — bounded not by hours or code output, but by how many systems one person can maintain alignment across. That's the saturating resource.`,
 
       `## The junior developer parallel`,
 
-      `I've led teams with junior developers for years. A motivated junior produces a lot of code fast, but without guardrails, that code creates problems that take longer to fix than to write.`,
+      `Motivated juniors produce a lot of code fast. Without guardrails, that code creates problems that take longer to fix than to write. The solution was never "slow them down."`,
 
-      `The solution was never "slow them down." It was:`,
+      `- **Guardrails everywhere.** Every automated constraint is one less thing to catch in review.
+- **Errors that teach.** "Failed" is useless. "This module can't import from that layer — see ARCHITECTURE.md" teaches the pattern.
+- **Tools that encapsulate workflow.** \`bin/feature todo\` says what to work on. \`bin/clown-check\` catches regressions at commit time. The less you rely on memory, the more reliable the process.`,
 
-      `- **Guardrails everywhere.** Linters, formatters, pre-commit hooks, CI checks. Every automated constraint is one less thing to catch in review.
-- **Errors that teach.** "Failed" is useless. "This module can't import from that layer — see ARCHITECTURE.md" teaches the correct pattern.
-- **Tools that encapsulate workflow.** \`bin/feature todo\` tells you what to work on. \`bin/clown-check\` catches regressions at commit time. The less you rely on the developer to remember the process, the more reliable the process.`,
+      `Everything I learned managing juniors applies to LLMs — amplified. Faster, more literal, more confident in their mistakes.`,
 
-      `Everything I learned managing juniors applies to LLMs, amplified. Faster, more literal, more confident in their mistakes. Guardrails matter more, not less.`,
+      `## Feature maps make work fall out naturally`,
 
-      `## Feature maps make the workflow fall out naturally`,
+      `Veliode's feature map tracks every feature through a progression: does it exist? Do specs exist? API tests? UI tests? Recorded demo? Each question is a concrete, checkable state — not a ticket status someone remembered to update.`,
 
-      `In Veliode, I built a feature map that tracks every feature through a progression: does the feature exist? Do specs exist? Do the specs have API tests? Do the specs have UI tests? Is there a recorded demo? Each question is a concrete, checkable state — not a ticket status someone remembered to update.`,
-
-      `When you hand an agent \`bin/feature todo\`, it sees the next gap in the progression and fills it. Write the spec. Write the API test. Write the UI test. Record the demo. The natural workflow falls out of the tool — nobody has to decide what to work on next or remember what state a feature is in. The feature map is the backlog, the progress tracker, and the definition of done, all derived from the code.`,
-
-      `This is what I mean by tools that encapsulate workflow. The agent doesn't need a project manager assigning tasks. It needs a tool that answers "what's incomplete?" with a concrete, actionable answer. The ralph loop — plan, code, test, ship, repeat — becomes the default behavior because the tooling makes it the path of least resistance.`,
+      `Hand an agent \`bin/feature todo\` and it sees the next gap and fills it. The feature map is the backlog, the progress tracker, and the definition of done, all derived from the code. No project manager assigning tasks. Just a tool that answers "what's incomplete?"`,
 
       `## Design for the first-time reader`,
 
-      `The general strategy: **design a codebase that an LLM seeing your project for the first time will get the answer right, or be told how to get it right.**`,
-
-      `This reframes every architectural decision. Not "is this clean?" but "will an agent with no prior context make the correct change here?"`,
+      `The strategy: **design a codebase where an LLM with zero context gets the answer right, or gets told how.**`,
 
       `- **Explicit over implicit.** If the pattern isn't visible in the file being edited, the agent won't follow it. Convention-over-configuration is hostile to LLMs.
-- **Errors that guide.** An agent that hits a useful error message self-corrects. An agent that hits a stack trace hallucinates a workaround.
-- **Architecture in the repo.** \`CLAUDE.md\`, \`ARCHITECTURE.md\`, module-level READMEs. If the rules aren't in files, the rules don't exist.
-- **Small, enforced boundaries.** Clear module boundaries with explicit public APIs. An agent scoped to one module can't create cross-cutting messes.`,
+- **Errors that guide.** Useful error message → self-correction. Stack trace → hallucinated workaround.
+- **Architecture in the repo.** \`CLAUDE.md\`, \`ARCHITECTURE.md\`, module READMEs. If the rules aren't in files, the rules don't exist.
+- **Small, enforced boundaries.** An agent scoped to one module can't create cross-cutting messes.`,
 
-      `The codebase should be self-steering. When it can't steer, it should be self-correcting — providing feedback that guides the agent back on track.`,
+      `## Before you're ready for velocity`,
 
-      `## Before a project is ready for velocity`,
+      `None of this works bolted on after the fact. Four things go in first:`,
 
-      `None of this works if you bolt it on after the fact. Before I let agents loose on a project, I set up four things:`,
+      `- **Auto-deploy to staging.** PRs gate on high-signal tests and KPI checks — just enough to prevent catastrophe. If they pass, it's in staging within minutes.
+- **A test CLI.** One command runs the full test plan against staging. \`--demo\` records video evidence. Anyone — human or agent — can verify end-to-end.
+- **Per-test timing.** Every test reports duration and resource usage, aggregated to a branch-level baseline. No baseline, no outliers.
+- **An artifact server.** Test logs, metrics, demo videos — stored per-branch, referenced in PRs. I review features by reading results and watching recordings, not re-running anything.`,
 
-      `- **Rapid shipping to staging.** Every branch deploys to staging automatically. The PR itself gates on high-signal tests — the ones that catch structural regressions and verify core contracts — plus KPI checks that flag anything horribly wrong. Not a full review, just enough to ensure nothing catastrophic lands. If those pass, it's in staging within minutes. This is what makes the "review in staging, gate at production" model viable.
-- **A distributable test CLI.** A single command that can run the full test plan against a live staging environment or spin up a temporary one. Includes \`--demo\` to record video evidence. Anyone — human or agent — can verify a feature end-to-end without knowing the test internals.
-- **Per-test timing and metrics.** Every test reports its own duration and resource usage. These aggregate to a branch-level baseline so you can see at a glance whether a branch made things slower, heavier, or flakier. This feeds the outlier reporting — no baseline, no outliers.
-- **An artifact server.** Test logs, metrics, and demo videos produced by each branch are stored and referenced in PRs and daily reports. When I review a batch of features, I'm not re-running anything — I'm reading results and watching recordings. The artifact server is what makes high-volume review possible without high-volume effort.`,
-
-      `This infrastructure is the job. Features are the easy part. The hard part is making the project survive its own velocity.`,
+      `This infrastructure is the job. Features are the easy part.`,
 
       `## The PM gap is a quality gap`,
 
-      `Projects that rely on non-technical management for LLM-driven work will ship fast and accumulate invisible debt. Architecture erodes, test suites weaken, the codebase becomes harder to change — the one thing you can't afford when your model is built on speed of change.`,
+      `Projects with non-technical management will ship fast and accumulate invisible debt. Architecture erodes, tests weaken, the codebase becomes harder to change — the one thing you can't afford when your model is built on speed of change.`,
 
-      `The projects that win will have senior developers whose job is structural integrity at velocity. Not writing features. Not managing timelines. Designing guardrails, reviewing architecture, building tools that keep quality high when everything else moves fast.`,
-
-      `That's the new project manager. Technical to the core.`,
+      `The projects that win will have senior devs whose job is structural integrity at velocity. Not writing features. Not managing timelines. Designing guardrails, reviewing architecture, building the tools that keep quality high when everything else moves fast.`,
     ],
     compliancePrompt: `Audit this project for velocity-readiness. High-velocity LLM-driven development requires infrastructure that maintains quality without blocking speed: automated staging, test tooling, metrics baselines, architectural guardrails, and alignment mechanisms. Check each item and report PASS, FAIL, or N/A with a one-line explanation:
 
@@ -128,74 +114,72 @@ For each FAIL, suggest a concrete next step.`,
     title: "Software That Stays Rational in a Ralph Loop",
     date: "2026-03-23",
     summary:
-      "How to keep things testable, stable, and sane when the development loop runs in minutes instead of days.",
+      "Testable, stable, and sane when the development loop runs in minutes. Structure is the only brake on LLM-accelerated debt.",
     content: [
-      `**TL;DR:** Test boundaries not internals, make every PR independently deployable, version shared interfaces, revert fast. LLMs accelerate tech debt — structure is the only brake.`,
+      `**TL;DR:** Test boundaries not internals. Every PR deploys independently. Version your interfaces. Revert fast. Structure is the only brake on LLM-accelerated debt.`,
 
       `## The speed trap`,
 
-      `A well-orchestrated agent can discover a task, plan, write code, run tests, open a PR, and move on — all in the time it takes to read this paragraph. Ten concurrent sessions and you're shipping at an absurd pace.`,
+      `A well-orchestrated agent discovers a task, plans, codes, tests, opens a PR, and moves on — in the time it took you to read this sentence. Ten concurrent sessions and you're shipping at a pace that feels like winning.`,
 
-      `But velocity has a failure mode. We've all inherited codebases that were written fast and are now expensive to change. LLMs accelerate this. The question isn't whether you can ship fast. It's whether what you shipped survives next week.`,
+      `You've inherited codebases written this way. They were expensive to change. LLMs just made that failure mode ten times faster.`,
 
       `## What "rational" means`,
 
-      `A rational codebase lets a reader — human or LLM — predict the effect of a change without reading the whole system. Every principle below serves that goal.`,
+      `A rational codebase lets any reader — human or LLM — predict the effect of a change without reading the whole system.`,
 
-      `**Locality of reasoning.** A function's behavior should be determinable from its signature and body. If understanding \`processOrder()\` requires reading six files, the codebase has a reasoning problem. LLMs operate in bounded context windows. Code that requires global knowledge to modify will be modified incorrectly.`,
+      `**Locality of reasoning.** If understanding \`processOrder()\` requires reading six files, the codebase has a reasoning problem. LLMs operate in bounded context windows. Code that requires global knowledge to modify will be modified incorrectly.`,
 
-      `**Explicit data flow.** Implicit state — singletons, thread-locals, ambient context — is invisible to agents. They see parameters and return values. If behavior depends on something they can't see, they'll produce code that works in the test and fails in production. Make the wiring visible.`,
+      `**Explicit data flow.** Singletons, thread-locals, ambient context — invisible to agents. They see parameters and return values. If behavior depends on something they can't see, they'll write code that passes the test and breaks production.`,
 
-      `**Small surface area.** Every public API is a commitment. LLMs create helpers and abstractions eagerly. Unchecked, this produces a combinatorial explosion of interactions. Fewer public entry points, fewer ways to break things.`,
+      `**Small surface area.** LLMs create helpers eagerly. Unchecked, you get a combinatorial explosion of interactions. Fewer public entry points, fewer ways to break things.`,
 
       `## Testability is non-negotiable`,
 
-      `In a ralph loop, tests are the feedback signal that keeps the loop from diverging. Without them you're doing open-loop control — sending commands without observing results.`,
+      `Tests are the feedback signal that keeps the loop from diverging. Without them you're doing open-loop control — sending commands without observing results.`,
 
-      `**Test the boundary, not the implementation.** Agent-written code churns. Tests coupled to internals break every iteration, training the agent to weaken assertions. Test the contract: given this input, expect this output.`,
+      `**Test the boundary, not the implementation.** Agent-written code churns. Tests coupled to internals break every iteration, training the agent to weaken assertions instead. Test the contract.`,
 
-      `**Make the suite fast.** A five-minute suite gets skipped. When agents iterate in 30-second loops, slow tests create gaps where untested changes accumulate. Parallel execution, in-memory databases, targeted test selection — these are requirements, not optimizations.`,
+      `**Make the suite fast.** A five-minute suite gets skipped. Agents iterate in 30-second loops. Slow tests create gaps where untested changes pile up.`,
 
-      `**Integration tests over mocks for critical paths.** Mocks verify your code calls what you told it to call. Integration tests verify the system works. The gap between "the mock says fine" and "production says no" gets discovered on Friday evening.`,
+      `**Integration tests over mocks for critical paths.** Mocks verify your code calls what you told it to call. Integration tests verify the system works. The gap between those two gets discovered on Friday evening.`,
 
       `## Stability through structure`,
 
-      `**Immutable checkpoints.** Every PR leaves the system working. Agents optimizing for throughput will "fix it in the next PR." That next PR has different context. Enforce the invariant: every merge is deployable.`,
+      `**Immutable checkpoints.** Agents love to "fix it in the next PR." That next PR has different context. Every merge must be deployable.`,
 
-      `**Dependency direction.** High-level policy shouldn't depend on low-level detail. When agent A modifies a schema and agent B modifies the API layer, the change that stays within the dependency boundary won't conflict.`,
+      `**Dependency direction.** When agent A modifies a schema and agent B modifies the API layer, the change that respects dependency boundaries won't conflict.`,
 
-      `**Version your interfaces.** With parallel agents, interface contracts are coordination points. Changing a shared interface without versioning it silently breaks every other session's work.`,
+      `**Version your interfaces.** Changing a shared interface without versioning it silently breaks every other session's work. With parallel agents, this happens constantly.`,
 
-      `## Automate conformance — lint everything, ban everything you can`,
+      `## Automate conformance`,
 
-      `At human velocity, you can rely on convention and code review to enforce rules. At agent velocity, every rule that isn't automated is a rule that will be broken. The agent doesn't know your conventions unless the tooling tells it.`,
+      `At human velocity, convention and code review enforce rules. At agent velocity, every unenforced rule will be broken. The agent doesn't know your conventions unless the tooling tells it.`,
 
-      `**Lint every layer.** ESLint, detekt, ktlint, checkstyle, clippy — whatever your stack has, turn it on, configure it strictly, and run it in CI and pre-commit. Don't just lint style. Lint architecture: banned imports, dependency direction, module boundary violations. Tools like ESLint's \`no-restricted-imports\`, ArchUnit, or custom detekt rules let you encode "module A must not depend on module B" as a failing build.`,
+      `**Lint architecture, not just style.** \`no-restricted-imports\`, ArchUnit, custom detekt rules — encode "module A must not depend on module B" as a failing build.`,
 
-      `**Define explicit bans.** If something shouldn't be used — a deprecated API, a dangerous pattern, a banned dependency — make it a lint rule, not a comment. \`@Suppress\` and \`eslint-disable\` should require justification (and clown-check catches unjustified suppressions). Bans are cheaper than cleanup.`,
+      `**Ban things explicitly.** Deprecated APIs, dangerous patterns — make them lint rules, not comments. Bans are cheaper than cleanup.`,
 
-      `**Type-check strictly.** \`strict: true\` in TypeScript. Explicit nullability in Kotlin. Every type hole is a place where an agent will silently do the wrong thing. The stricter the type system, the narrower the space of valid programs, the fewer ways the agent can go wrong.`,
+      `**Type-check strictly.** Every type hole is a place where an agent silently does the wrong thing. Stricter types, narrower space of valid programs.`,
 
-      `**Format on save, format on commit.** Formatting debates are zero-value. Prettier, ktfmt, gofmt — pick one, enforce it, never discuss it again. Agents produce inconsistent formatting across sessions. Autoformatting makes every diff about logic, not whitespace.`,
+      `**Format on commit.** Pick a formatter, enforce it, never discuss formatting again. Agents produce inconsistent style across sessions. Autoformatting makes every diff about logic.`,
 
-      `**Pre-commit hooks as the last gate.** Everything above — linting, formatting, type-checking, clown-check — runs before code enters the repo. The agent gets immediate feedback: "this violates the dependency rule between X and Y." Fast feedback is how agents self-correct. Slow feedback (CI failure 10 minutes later) means the agent has already moved on and built on top of the violation.`,
+      `**Pre-commit hooks as the last gate.** Linting, formatting, type-checking, clown-check — all before code enters the repo. Fast feedback is how agents self-correct. CI failure 10 minutes later means the agent already built on top of the violation.`,
 
-      `The principle: if a human would catch it in review, automate it. If you can state it as a rule, it's a lint rule. The tighter the rails, the less review surface remains for humans. What's left is the genuinely hard stuff — architectural fitness, product judgment, "does this actually solve the problem" — which is where human time should go.`,
+      `If a human would catch it in review, automate it. If you can state it as a rule, it's a lint rule. What's left for humans is the hard stuff: architectural fitness, product judgment, "does this actually solve the problem."`,
 
       `## The human role changes`,
 
-      `In a ralph loop, you're not writing most of the code. You're deciding what "rational" means for this system — setting constraints, reviewing architecture, catching drift that no individual PR reveals.`,
+      `You're not writing most of the code. You're deciding what "rational" means for this system — and refusing to accept deviations. Very fast, very literal junior devs. The leverage is in what you ask for and what you reject.`,
 
-      `It's like managing very fast, very literal junior devs. They do exactly what you ask, quickly. The leverage is in what you ask for — and what you refuse to accept.`,
-
-      `## Practical checklist`,
+      `## Checklist`,
 
       `- **Every PR passes CI independently.** No "this fixes the last one" chains.
 - **Coverage gates are enforced.** Agents find the path of least resistance.
-- **Shared interfaces are versioned.** Even a comment-level contract beats none.
+- **Shared interfaces are versioned.** A comment-level contract beats none.
 - **Architecture decisions live in the repo.** Agents read files, not your mind.
-- **Review cadence matches velocity.** Agents merging every 30 minutes + daily review = 48 unreviewed changes. Automate the reviewable parts.
-- **Revert fast.** Cheaper than debugging a cascade built on a bad change.`,
+- **Review cadence matches velocity.** Merging every 30 minutes + daily review = 48 unreviewed changes.
+- **Revert fast.** Cheaper than debugging a cascade.`,
     ],
     compliancePrompt: `Audit this project for codebase rationality. A rational codebase lets a reader — human or LLM — predict the effect of a change without reading the whole system. Check each item and report PASS, FAIL, or N/A with a one-line explanation:
 
@@ -222,51 +206,43 @@ For each FAIL, suggest a concrete next step.`,
     title: "CLI Tools That Keep You Moving",
     date: "2026-03-23",
     summary:
-      "Repo-native CLI tools that derive state from code, prioritize work, and track progress — no kanban board required.",
+      "One command, no arguments, the repo tells you what to work on. No kanban board required.",
     content: [
-      `**TL;DR:** \`features.yaml\` + \`bin/feature todo\` replaces your kanban board. Dual-driver specs (API + UI) auto-track progress. \`bin/demo\` records proof. No tickets to update — the code is the project management.`,
+      `**TL;DR:** \`features.yaml\` + \`bin/feature todo\` replaces your kanban board. Dual-driver specs auto-track progress. \`bin/demo\` records proof. The code is the project management.`,
 
-      `## Big projects and lost context`,
+      `## Monday morning, lost`,
 
-      `Veliode is a full-stack service business platform — appointments, scheduling, booking, billing, multi-location. Monday morning, you don't know what to work on first. Features in every state: some need API work, some need UI, some need tests, some are half-built, some are broken.`,
+      `Veliode is a full-stack service business platform — appointments, scheduling, booking, billing, multi-location. Monday morning, you open the repo and every feature is in a different state. Some need API work. Some need UI. Some need tests. Some are half-built. Some are quietly broken.`,
 
-      `The usual answer is Jira or a kanban board. Problem: you have to maintain it. Updating tickets competes with actual work.`,
+      `The usual answer is Jira. The actual answer is maintaining Jira, which competes with doing the work Jira is tracking.`,
 
-      `I wanted tools that live in the repo, derive state from the code, and tell me what to do next in one command.`,
+      `## features.yaml`,
 
-      `## features.yaml: single source of truth`,
+      `Every feature lives in a YAML file at the repo root. Committed, diffed, reviewed like code. Statuses follow a lifecycle: \`needs-review\` → \`missing\` → \`overhaul\` → \`align\` → \`expand\` → \`refine\` → \`ok\` → \`deprecated\`.`,
 
-      `Every feature is defined in a YAML file at the repo root. Committed, diffed, reviewed like code. Each feature has a name, status, and hierarchy. Statuses follow a lifecycle: \`needs-review\` → \`missing\` → \`overhaul\` → \`align\` → \`expand\` → \`refine\` → \`ok\` → \`deprecated\`.`,
-
-      `Simple. But the power is in the tooling that reads it.`,
+      `The power isn't the file. It's the tooling that reads it.`,
 
       `## bin/feature todo`,
 
-      `One command. No arguments. Scans the YAML, cross-references \`@FeatureSpec\` annotations, checks test results, prints a priority-ordered list. Priority: FIX → PLAN → API → UI → DEPR.`,
+      `One command. No arguments. Scans the YAML, cross-references \`@FeatureSpec\` annotations, checks test results, prints a priority-ordered list. FIX → PLAN → API → UI → DEPR.`,
 
-      `No remembering where you left off. No checking a board. Type \`bin/feature todo\`, the repo tells you what matters.`,
+      `No remembering where you left off. No checking a board. The repo tells you what matters.`,
 
-      `Output is a short ranked list: feature name, status, what's missing. Nothing else.`,
+      `## bin/feature [name]`,
 
-      `## bin/feature [name]: drill down`,
+      `\`bin/feature Checkout\` — specs, test status, API coverage, UI coverage, pass/fail. One command, complete picture.`,
 
-      `\`bin/feature Checkout\` — specs, test status, API coverage, UI coverage, passing, failing. One command, one argument, complete picture.`,
-
-      `\`bin/feature Checkout api\` — just API specs. \`bin/feature Checkout ui\` — just UI specs. Output matches your focus.`,
+      `\`bin/feature Checkout api\` — just API specs. \`bin/feature Checkout ui\` — just UI. Output matches your focus.`,
 
       `## Dual-driver specs`,
 
-      `Every feature spec has two drivers: API and UI. Both implement the same \`Steps\` interface but exercise different layers. API driver validates backend via REST. UI driver validates rendering via Playwright.`,
+      `Every spec has two drivers: API and UI. Same \`Steps\` interface, different layers. API validates backend via REST. UI validates rendering via Playwright.`,
 
-      `Build features in layers: write the API spec, build backend until the API driver passes, then build UI until the UI driver passes. \`bin/feature todo\` reflects progress automatically — status updates based on which specs pass.`,
+      `Build in layers: write the API spec, build backend until it passes, build UI until it passes. \`bin/feature todo\` reflects progress automatically. No ticket updates. No card moves.`,
 
-      `No ticket updates. No card moves. The code is the project management.`,
+      `## bin/demo`,
 
-      `## bin/demo: proof it works`,
-
-      `\`bin/demo --feature Checkout\` takes existing specs and records browser demos — screen recordings of the feature being exercised. Visual evidence for PRs, stakeholders, or your future self.`,
-
-      `Ad-hoc demos too:`,
+      `\`bin/demo --feature Checkout\` records browser demos from existing specs. Visual evidence for PRs, stakeholders, or your future self wondering if this ever actually worked.`,
 
       `\`\`\`
 bin/demo "login-flow" <<'EOF'
@@ -276,18 +252,16 @@ bin/demo "login-flow" <<'EOF'
 EOF
 \`\`\``,
 
-      `Specs become living documentation. Pass a spec, get a recording. Change a spec, auto-record the new behavior.`,
+      `Pass a spec, get a recording. Change a spec, auto-record the new behavior.`,
 
       `## The pattern`,
 
       `- **Minimal input.** One command, zero or one argument.
 - **Derived state.** Tools read the code, not a separate system. No sync problem.
 - **Prioritized output.** What matters most, in order.
-- **Progressive detail.** Broad → narrow. Each level gives exactly the context for the current decision.`,
+- **Progressive detail.** Broad → narrow. Exactly the context for the current decision.`,
 
-      `Adding a feature: add a YAML entry, write specs. Tooling handles progress tracking, priority ordering, evidence recording, quality gating.`,
-
-      `The tracking is the testing. The project management is the code. \`bin/feature todo\` always knows what's next.`,
+      `The tracking is the testing. \`bin/feature todo\` always knows what's next.`,
     ],
     compliancePrompt: `Audit this project for CLI-driven workflow. Projects stay productive when tooling lives in the repo, derives state from code, and tells you what to work on next without external systems. Check each item and report PASS, FAIL, or N/A with a one-line explanation:
 
@@ -309,73 +283,63 @@ For each FAIL, suggest a concrete next step.`,
     title: "Clown Check: Separating Dev from Reviewer",
     date: "2026-03-24",
     summary:
-      "A pre-commit hook that runs a separate Claude session to catch the shortcuts the coding session won't admit to.",
+      "A pre-commit hook that catches the shortcuts the coding session won't admit to.",
     content: [
-      `**TL;DR:** A pre-commit hook runs Claude as a reviewer (separate session from the dev) to catch deleted tests, disabled validation, empty catch blocks, and other regressions that the coding agent won't flag on itself.`,
+      `**TL;DR:** A pre-commit hook runs a fresh Claude session — separate from the dev session — to catch deleted tests, disabled validation, and other regressions the coding agent won't flag on itself.`,
 
-      `## The problem`,
+      `## The blind spot`,
 
-      `When an LLM writes code and reviews its own code, it has a blind spot: it's already decided the approach is correct. The same session that deleted a test will rationalize the deletion. "The test was fundamentally broken." "The test was testing implementation details." "The test was redundant."`,
+      `An LLM that writes code and reviews its own code has already decided the approach is correct. The same session that deleted a test will rationalize the deletion. "Fundamentally broken." "Testing implementation details." "Redundant."`,
 
-      `Sometimes that's true. Often it's the agent taking the path of least resistance — deleting the test is easier than fixing the code the test caught.`,
+      `Sometimes true. Often it's the path of least resistance — deleting the test is easier than fixing the code the test caught.`,
 
-      `Humans do this too. That's why we have code review: a second set of eyes that didn't write the code and isn't invested in the approach. The reviewer catches what the author can't see.`,
-
-      `LLM workflows need the same separation. The agent that writes the code should not be the agent that reviews it.`,
+      `Humans do this too. That's why code review exists. The agent that writes the code should not be the agent that reviews it.`,
 
       `## bin/clown-check`,
 
-      `\`bin/clown-check\` is a pre-commit hook in Veliode. Before a commit lands, it invokes a fresh Claude session — separate from whatever wrote the code — and asks it to review the staged diff.`,
+      `Pre-commit hook. Before a commit lands, a fresh Claude session — no shared context with whatever wrote the code — reviews the staged diff.`,
 
-      `The review is structured around two commit types:`,
+      `Two commit types, two review modes:`,
 
-      `**Scaffolding commits** — TODOs, stubs, placeholders are expected. The reviewer checks that scaffolding is clearly marked and doesn't pretend to be finished.`,
+      `**Scaffolding commits** — TODOs and stubs are expected. The reviewer checks that scaffolding doesn't pretend to be finished.`,
 
       `**Implementation commits** — TODOs mean incomplete work. The reviewer checks that the implementation actually implements what it claims.`,
 
       `## What it catches`,
 
-      `The reviewer flags patterns that indicate the dev session cut corners:`,
-
-      `- **Deleted tests.** The most common regression. A test fails, the agent deletes it instead of fixing the underlying code. The agent's own reasoning: "the test was problematic." The reviewer's job: prove it.
+      `- **Deleted tests.** Test fails, agent deletes it. The agent's reasoning: "problematic." The reviewer's job: prove it.
 - **Disabled validation.** Commenting out checks, adding \`@Suppress\`, weakening type constraints.
 - **Empty catch blocks.** Swallowing errors to make tests pass.
-- **Unexplained lint suppressions.** \`eslint-disable\` without a comment explaining why.
+- **Unexplained lint suppressions.** \`eslint-disable\` without justification.
 - **Test weakening.** Loosening assertions, removing edge cases, converting specific checks to \`assertNotNull\`.`,
 
-      `The output is binary: \`PASS\` or \`FAIL: [reason]\`. No ambiguity.`,
+      `Output is binary: \`PASS\` or \`FAIL: [reason]\`.`,
 
       `## Why separation matters`,
 
-      `A single Claude session asked "write this feature and make sure it's good" will produce code and then confirm its own code is good. The context is contaminated — the session has already committed to the approach.`,
+      `"Write this feature and make sure it's good" will always produce code that the same session confirms is good. The context is contaminated.`,
 
-      `A fresh session looking only at the diff has no investment in the approach. It sees: "this commit deletes three tests and adds no new ones." That's a fact, not a judgment call. The reviewer doesn't need to understand why the tests existed — it just needs to flag that coverage went down and the commit should explain why.`,
-
-      `This mirrors how human code review works. The reviewer doesn't have the author's full context, and that's a feature. It forces the diff to be self-explanatory.`,
+      `A fresh session sees: "this commit deletes three tests and adds none." That's a fact, not a judgment call. It doesn't need to understand why the tests existed — just that coverage went down and the commit doesn't explain why.`,
 
       `## The deleted-test pattern`,
 
-      `This deserves its own section because it's the most insidious failure mode.`,
+      `The most insidious failure mode. An agent hits a failing test. Correct response: fix the code or update the test. Lazy response: delete it, claim it was broken.`,
 
-      `An LLM working on a feature encounters a failing test. The correct response: understand why the test fails, fix the code or update the test to match the new behavior. The lazy response: delete the test, claim it was "fundamentally broken" or "testing implementation details."`,
+      `Both look identical in the session's own reasoning. The agent genuinely believes the test was bad — it has no context for why the test was written. It only sees that removing the test makes everything green.`,
 
-      `The problem: both responses look identical in the session's own reasoning. The agent genuinely believes the test was broken — it doesn't have the context of why the test was written in the first place. It only sees that removing the test makes everything green.`,
+      `Clown-check flags any commit that reduces test count without justification or replacement tests. You can still delete tests. You just have to convince a reviewer that isn't already on your side.`,
 
-      `\`bin/clown-check\` catches this by flagging any commit that reduces test count without a corresponding explanation in the commit message or new tests that cover the same behavior. The coding session can still delete tests — but it has to justify the deletion to a reviewer that isn't already convinced.`,
+      `## Cost`,
 
-      `## Integration with the ralph loop`,
+      `Ten seconds per commit. Without it, a single afternoon of agent-driven development quietly deletes a dozen tests, each one "justified" by the session that deleted it. By the time you notice, the coverage holes have been built on top of.`,
 
-      `In a fast development loop, clown-check adds maybe 10 seconds to each commit. That's cheap insurance against the compounding cost of regressions.`,
-
-      `Without it, a single afternoon of agent-driven development can quietly delete a dozen tests, each one "justified" by the session that deleted it. By the time you notice, the coverage holes have been built on top of. Restoring the tests means understanding code that's changed significantly since they were removed.`,
-
-      `With it, every deletion is flagged at commit time. The developer (human or agent) either justifies it or doesn't commit. Regressions caught at the boundary, not discovered downstream.`,
+      `With it, regressions are caught at the boundary. Not downstream. Not next week.`,
 
       `## Setup`,
 
-      `The hook is simple: run \`claude\` against the staged diff with a prompt that distinguishes scaffolding from implementation and flags the patterns above. Output is \`PASS\` or \`FAIL: [reason]\`. Runs as a git pre-commit hook — no CI delay, no PR review wait.`,
+      `Run \`claude\` against the staged diff with a static prompt. \`PASS\` or \`FAIL: [reason]\`. Git pre-commit hook — no CI delay.`,
 
-      `The key insight is that the reviewer prompt is static and doesn't share conversation history with the coding session. Clean context, no prior commitment to the approach, no rationalization.`,
+      `The reviewer prompt is static. No shared history. No rationalization.`,
     ],
     compliancePrompt: `Audit this project for dev/reviewer separation. LLMs that write code and review their own code have a blind spot — they rationalize their own shortcuts. Quality requires a separate review session that examines diffs without the authoring context. Check each item and report PASS, FAIL, or N/A with a one-line explanation:
 
@@ -400,56 +364,52 @@ For each FAIL, suggest a concrete next step.`,
     summary:
       "Twenty MCP tools burn 4,000 tokens before the model does anything. tshell replaces them with one eval interface at 1,641 tokens.",
     content: [
-      `**TL;DR:** tshell is a sandboxed JS-subset eval tool for LLMs. One tool schema replaces 20+. Pipe operator enables single-expression composition. Commands discovered at runtime via \`help()\`, not baked into the prompt. 1,641 tokens total. Maven Central.`,
+      `**TL;DR:** One sandboxed JS-eval tool replaces 20+ MCP tools. Pipe operator for composition. Runtime-discoverable commands. 1,641 tokens total. Maven Central.`,
 
       `## The context window tax`,
 
-      `MCP tool schemas go into the system prompt. Name, description, parameters, types, examples. A typical tool: 150–250 tokens. Playwright alone adds 8KB.`,
+      `MCP tool schemas live in the system prompt. A typical tool: 150–250 tokens. Playwright alone adds 8KB. Twenty tools at 200 tokens each = 4,000 tokens permanently occupied by descriptions the model may never use.`,
 
-      `Those tokens compete with the conversation, the code, the files being read. Twenty tools at 200 tokens each = 4,000 tokens permanently occupied by descriptions the model may never use.`,
-
-      `Every new capability grows the prompt. SQL tool, file tool, git tool, browser tool — each pushes out room for actual work. And since schemas are baked into the system prompt, the KV cache invalidates when you change the tool set.`,
+      `Every new capability grows the prompt and invalidates the KV cache. You're paying for tools in the currency your model thinks with.`,
 
       `## The insight`,
 
-      `LLMs already know JavaScript. Give a model a JS-like eval interface instead of twenty tools and it can compose operations in one call. The schema for one eval tool is tiny.`,
+      `LLMs already know JavaScript. One JS-like eval interface replaces twenty tools, composes operations in one call, and the schema is tiny.`,
 
-      `tshell is a sandboxed JS subset — familiar enough for correct calls without special prompting, constrained enough for safe execution. No \`class\`, no \`this\`, no \`import\`, no arbitrary filesystem access. You get: variables, functions, arrows, template strings, destructuring, and the pipe operator.`,
+      `tshell: sandboxed JS subset. No \`class\`, no \`this\`, no \`import\`, no filesystem access. You get variables, functions, arrows, template strings, destructuring, and the pipe operator. Familiar enough for correct calls. Constrained enough for safe execution.`,
 
       `## The pipe operator`,
-
-      `\`|>\` passes the left-hand value as the first argument to the right-hand function:`,
 
       `\`\`\`
 "hello world" |> split(" ") |> map(w => w |> upper()) |> join(" ")
 // → "HELLO WORLD"
 \`\`\``,
 
-      `Three tool calls become one expression. The model writes it naturally — it already knows the pattern. No training needed.`,
+      `Three tool calls become one expression. The model already knows the pattern.`,
 
-      `\`|*\` scatters over elements in parallel. \`<|\` feeds additional arguments. Together they cover composition patterns that would otherwise require orchestration in the model's reasoning.`,
+      `\`|*\` scatters over elements in parallel. \`<|\` feeds additional arguments. Composition patterns that otherwise require orchestration in the model's reasoning.`,
 
-      `## 1,641 tokens total`,
+      `## 1,641 tokens`,
 
-      `Tool description, syntax reference, all command signatures: 1,641 tokens. That's the context cost regardless of capability count. Compare: 2,000–4,000 for 10–20 typical MCP tools.`,
+      `Tool description, syntax reference, all command signatures. That's the context cost regardless of how many capabilities you add. Compare: 2,000–4,000 for 10–20 typical MCP tools.`,
 
-      `Key decision: commands aren't in the system prompt. They're discoverable at runtime via \`help()\`. Adding a toolkit — SQL, browser, a custom MCP server — doesn't grow the prompt. System prompt stays constant. KV cache stays warm.`,
+      `Commands aren't in the system prompt — they're discoverable at runtime via \`help()\`. Add a SQL toolkit, a browser, a custom MCP server. Prompt stays constant. KV cache stays warm.`,
 
       `## Polyglot composition`,
 
-      `tshell wraps external MCP servers as namespaced commands. Python, Go, TypeScript servers all callable in one expression:`,
+      `tshell wraps external MCP servers as namespaced commands:`,
 
       `\`\`\`
 app.users() |> filter(u => u.active) |> sort("name") |> map(u => u.name)
 \`\`\``,
 
-      `One eval call, one round trip. Without tshell: three tool calls, three round trips, three chances for the model to lose track.`,
+      `One eval call, one round trip. Without tshell: three calls, three round trips, three chances for the model to lose the thread.`,
 
       `## The double-escaping problem`,
 
-      `LLM tool call backslash hell: model writes \`\\n\`, JSON escapes it, interpreter sees... something. Leads to \`\\\\\\\\\` spirals.`,
+      `Model writes \`\\n\`, JSON escapes it, interpreter sees... something. The \`\\\\\\\\\` spiral is a rite of passage nobody asked for.`,
 
-      `tshell fixes this two ways. Raw template strings (\`r\` prefix) disable escape processing. And the \`vars\` parameter passes complex strings as structured data, bypassing escaping entirely:`,
+      `tshell: raw template strings (\`r\` prefix) disable escape processing. The \`vars\` parameter passes complex strings as structured data, bypassing escaping entirely:`,
 
       `\`\`\`
 {
@@ -462,25 +422,19 @@ app.users() |> filter(u => u.active) |> sort("name") |> map(u => u.name)
 }
 \`\`\``,
 
-      `Vars bind as constants before execution. No escaping dance.`,
-
       `## Benchmarks`,
 
-      `33/33 challenges passed on Qwen3-5-35B (mid-range open model), averaging 1.3 tool calls per task. Tasks that normally need split → filter → count → format chains complete in a single eval.`,
-
-      `Fewer round trips = faster completion, fewer chances to go off track.`,
+      `33/33 challenges on Qwen3-5-35B (mid-range open model), averaging 1.3 tool calls per task. Chains that normally need split → filter → count → format complete in a single eval.`,
 
       `## Why not a REPL?`,
 
-      `A REPL gives full language access: infinite loops, dangerous imports, arbitrary filesystem access. tshell has step limits, call depth limits, timeouts, output caps. Safe to execute without reviewing every expression.`,
+      `A REPL gives infinite loops, dangerous imports, arbitrary filesystem access. tshell has step limits, call depth limits, timeouts, output caps.`,
 
-      `The other difference: tshell is an MCP server that bridges other MCP servers. Point it at existing tool infrastructure, it wraps everything into one eval interface. The model doesn't know it's talking to five servers. It just writes expressions.`,
+      `The other difference: tshell bridges MCP servers. Point it at your existing tool infrastructure. The model doesn't know it's talking to five servers. It just writes expressions.`,
 
       `## Takeaway`,
 
-      `MCP ecosystem is growing. Context windows aren't keeping pace. Every tool you add makes the model less effective at everything else.`,
-
-      `tshell inverts the curve: capabilities grow, prompt stays constant. One tool, 1,641 tokens, unlimited composition. Maven Central, open source.`,
+      `Every tool you add makes the model worse at everything else. tshell inverts the curve: capabilities grow, prompt stays constant. One tool, 1,641 tokens, unlimited composition.`,
     ],
     compliancePrompt: `Audit this project's LLM tool integration for context efficiency. Every MCP tool schema burns prompt tokens. Fewer tools with composable interfaces reduce token cost and increase model effectiveness. Check each item and report PASS, FAIL, or N/A with a one-line explanation:
 
@@ -501,27 +455,25 @@ For each FAIL, suggest a concrete next step.`,
     title: "Show Your Work: Transparency as Architecture",
     date: "2026-04-01",
     summary:
-      "At LLM velocity, you can't review how everything changes — you watch what it's currently doing. The same principle applies to your users. Make the application explain itself, and the explanation becomes a test surface.",
+      "Make the application explain itself. The explanation becomes a test surface, a review surface, and the reason users trust your output.",
     content: [
-      `**TL;DR:** Explanations are first-class backend data objects — generated by code, carrying references back to that code, auditable from UI to source. The application's self-explanation becomes a review surface, reducing code review burden and building user trust.`,
+      `**TL;DR:** Explanations are backend data objects — generated by code, carrying references back to that code, auditable from UI to source. The application explains itself. The explanation becomes a test surface.`,
 
-      `## You can't watch the development, so make the implementation prove it`,
+      `## You can't watch the development`,
 
-      `A common thread across LLM-driven development: you cannot keep up with how things are changing. Multiple agents, parallel PRs, code moving faster than any human reads. The adaptation is to stop tracking the process and start observing the output. Watch what the system is currently doing, not how it got there.`,
+      `Multiple agents, parallel PRs, code moving faster than any human reads. Stop tracking the process. Start observing the output.`,
 
-      `This isn't just a development management insight. It's a product design principle. Your users face the same problem — they can't audit your process, but they can audit your results, if you let them.`,
+      `Your users face the same problem. They can't audit your process. But they can audit your results — if you let them.`,
 
       `## Transparency is not logging`,
 
-      `Logging tells you what happened after something goes wrong. Transparency tells the user what's happening right now, and why. These are different design goals.`,
+      `Logging tells you what happened after something goes wrong. Transparency tells the user what's happening now, and why.`,
 
-      `In the King County Assessor Analysis platform, every valuation is drillable. The number on screen isn't a black box — the methodology is visible, the inputs are listed, the statistical approach is explained. A user looking at a property assessment can see exactly how that number was derived and what data fed it.`,
+      `In the King County Assessor Analysis platform, every valuation is drillable. The number on screen isn't a black box — methodology visible, inputs listed, statistical approach explained. A user can see exactly how their property assessment was derived.`,
 
-      `This wasn't just good UX. It was a quality mechanism. If the explanation doesn't match the output, that's a visible bug — catchable by any user, any tester, any LLM reviewing the page.`,
+      `This wasn't just good UX. If the explanation doesn't match the output, that's a visible bug — catchable by any user, any tester, any LLM reviewing the page.`,
 
       `## Explanations are data objects`,
-
-      `The key architectural decision: explanations are not UI copy. They are structured backend data objects, generated by functions, carrying metadata about the code that produced them.`,
 
       `\`\`\`
 // Not this:
@@ -542,43 +494,39 @@ return {
 }
 \`\`\``,
 
-      `The explanation object has a \`reference\` field pointing back to the source code that generated it. An LLM or audit process can follow that reference, read the function, and verify that the explanation matches the implementation. The explanation is testable: assert that the method field matches the code path taken, that the inputs listed are the inputs used, that the reference points to code that exists.`,
+      `The \`reference\` field points back to the source code that generated it. An audit process follows the reference, reads the function, verifies the explanation matches. Testable: assert the method matches the code path, the inputs match the data used, the reference points to code that exists.`,
 
       `## The UI is just one consumer`,
 
-      `The UI surfaces these explanations as drillable boxes — users click into a valuation and see the methodology, the comparable sales, the adjustment factors. But the UI is not the point. The explanation objects exist at the API layer. They're returnable, serializable, assertable.`,
+      `Users click into a valuation, see the methodology, the comparables, the adjustment factors. But the explanation objects exist at the API layer — returnable, serializable, assertable.`,
 
-      `A test can call the valuation endpoint and verify that the explanation's stated method matches the code path. A compliance audit can pull every explanation object for a jurisdiction and check consistency. An LLM reviewer can read the explanation metadata and cross-reference it against the source code at the referenced location.`,
-
-      `The explanation must be auditable from UI to code. Not "the UI says sales comparison" — the data object says \`method: "sales-comparison"\`, the reference says \`ValuationService.salesComparison:L142-L198\`, and that function at line 142 actually implements a sales comparison approach. Every layer agrees, or something is wrong.`,
+      `Tests call the valuation endpoint and verify the explanation's stated method matches the code path. Compliance audits pull every explanation for a jurisdiction and check consistency. LLM reviewers cross-reference metadata against source code. Every layer agrees, or something is wrong.`,
 
       `## This solves a portion of code review`,
 
-      `Here's where it connects back to velocity. At LLM speed, you can't review every line of code. But if the application explains its own reasoning — and those explanations are structured, referenced, and testable — then the application is partially reviewing itself.`,
+      `An LLM changes the valuation logic. The explanation still says "sales comparison" but the code now does something else. Testable discrepancy. You don't read the diff — the test catches it.`,
 
-      `An LLM changes the valuation logic. The explanation object still says "sales comparison" but the code now does something different. That's a testable discrepancy. You don't need to read the diff — the explanation metadata disagrees with the implementation, and a test catches it.`,
+      `The transparency layer becomes a contract. The code promises to do what the explanation says. When code changes, either the explanation updates (visible, reviewable) or a test fails. Cheaper than reviewing every PR. More reliable than trusting the commit message.`,
 
-      `The transparency layer becomes a contract. The code promises to do what the explanation says. When the code changes, either the explanation updates to match (and the update is visible, reviewable) or a test fails. This is cheaper than reviewing every PR and more reliable than trusting the agent's commit message.`,
+      `## Domain-specific, not generic`,
 
-      `## Application-specific explainer boxes`,
+      `"Info" tooltips don't cut it. In the KC assessor platform:`,
 
-      `Generic "info" tooltips don't cut it. The explanations need to be specific to your domain and your methodology. In the KC assessor platform:`,
+      `- A valuation box shows the statistical method, R-squared, comparable count, and adjustments applied.
+- A trend chart shows time window, outlier exclusion, and data source.
+- An area summary shows how boundaries were defined and what aggregation produced the statistics.`,
 
-      `- A valuation box explains which statistical method was used, what the R-squared is, how many comparables were included, and what adjustments were applied.
-- A trend chart explains what time window it covers, what outlier exclusion was applied, and what the data source is.
-- An area summary explains how area boundaries were defined and what aggregation method produced the summary statistics.`,
-
-      `Each of these is a domain object with generation logic, not a string pasted into a template. When I found that including these specific, honest explanations in the UI — showing users exactly how their results were interpreted and computed — it led to happier users and better outcomes. Users trust results they can interrogate. They distrust results that just appear.`,
+      `Each is a domain object with generation logic, not a string pasted into a template. Users trust results they can interrogate. They distrust results that just appear.`,
 
       `## The pattern`,
 
-      `- **Explanations are backend data objects**, not UI strings. Generated by functions, carrying metadata.
-- **References point to source code.** Every explanation knows what code produced it. Auditable by humans, tests, and LLMs.
-- **The UI surfaces them**, but they exist independently. API-returnable, serializable, assertable.
-- **Tests verify agreement** between explanation metadata and implementation. Discrepancies are bugs.
-- **Domain-specific, not generic.** Each explanation speaks the language of the domain, not "this value was computed."`,
+      `- **Explanations are backend data objects.** Generated by functions, carrying metadata.
+- **References point to source code.** Auditable by humans, tests, and LLMs.
+- **The UI surfaces them**, but they exist independently at the API layer.
+- **Tests verify agreement.** Discrepancies are bugs.
+- **Domain-specific.** Each explanation speaks the language of the domain.`,
 
-      `At LLM velocity, you need every layer of the system helping you catch mistakes. Making the application explain itself — with structured, referenced, testable explanations — turns your product into a review surface. The code reviews itself every time it runs.`,
+      `The application explains itself. The explanation becomes a review surface. The code reviews itself every time it runs.`,
     ],
     compliancePrompt: `Audit this project for transparency architecture. Applications that explain their own reasoning — with structured, referenced, testable explanation objects — are partially self-reviewing. Check each item and report PASS, FAIL, or N/A with a one-line explanation:
 
@@ -601,150 +549,126 @@ For each FAIL, suggest a concrete next step.`,
     title: "Alpha to Maintenance: Knowing Where Your Project Actually Is",
     date: "2026-04-02",
     summary:
-      "Formal definitions for project lifecycle stages — alpha, beta, fledgling, toddler, adolescent, prime, and maintenance — and what each demands right now to progress toward prime. Value defense runs through all of them.",
+      "Seven stages, each with a specific job. Skip one and the debt forces you back. Value defense is the thread through all of them.",
     content: [
-      `**TL;DR:** Projects move through defined stages — alpha, beta, fledgling, toddler, adolescent, prime, maintenance — each with specific requirements for progression. Knowing your stage tells you what to work on now. Value defense — defining what matters and proving it's preserved — is the thread that runs through every stage. High velocity without value defense is how projects die fast.`,
+      `**TL;DR:** Seven stages — alpha, beta, fledgling, toddler, adolescent, prime, maintenance. Each has a specific job. Skip it and the debt forces you back or kills the project. Value defense — defining what matters and proving it's preserved — runs through all of them.`,
 
       `## Why stages matter`,
 
-      `Most projects don't fail because of bad code. They fail because the team is solving the wrong problems for the project's current stage. Optimizing deployment strategies during alpha is wasted effort. Ignoring data responsibility during fledgling is a time bomb. Building custom solutions before the fundamentals are stable is vanity engineering.`,
+      `Projects don't fail because of bad code. They fail because the team is solving the wrong problems for the project's current stage. Optimizing deployment during alpha is wasted effort. Ignoring data responsibility during fledgling is a time bomb. Building custom solutions before the fundamentals are stable is vanity engineering.`,
 
-      `Each stage has a specific job. Do that job, progress to the next stage. Skip it, and the debt compounds until it forces you back — or kills the project.`,
+      `## Alpha: exploring value`,
 
-      `## Alpha: placeholders and planning`,
+      `Mostly placeholders. Architecture being discovered, not refined. That's healthy. But alpha isn't just "prove the concept" — it's exploring what the value even is and which strategies might deliver it. You're testing hypotheses about the product as much as the code.`,
 
-      `**Defining trait:** The system is mostly placeholders. Large planning stack. Core architecture is being discovered, not refined.`,
+      `**Do now:**
+- Skeleton: stubs, interfaces, data models.
+- Feature map, even if every feature says "missing."
+- Test harness infrastructure — even if few tests exist yet.
+- ARCHITECTURE.md. The earlier it exists, the fewer wrong turns agents take.
+- Articulate competing value hypotheses. What problem might this solve? For whom? Which approach wins?`,
 
-      `**The job:** Prove the concept works. Validate the architecture by building just enough to see if the pieces fit. Placeholders are expected and healthy — they mark the territory without committing to implementation details.`,
+      `**Don't:** Optimize. Scale. Polish UI. Commit to one strategy before you've tested alternatives.`,
 
-      `**What to do now:**
-- Build the skeleton. Stubs, interfaces, data models.
-- Define the feature map, even if every feature says "missing."
-- Establish the test harness — even if few tests exist, the infrastructure to run them must.
-- Write ARCHITECTURE.md. The earlier this exists, the fewer wrong turns agents take.`,
+      `**Value defense:** Value is dreamed of in alpha. Define what "done" could mean — plural. If you can't articulate the value proposition now, velocity will carry you away from it. Not code debt — value debt. The risk at alpha isn't building the wrong thing. It's building the wrong thing fast and never questioning it.`,
 
-      `**What not to do:** Optimize. Scale. Polish UI. Worry about deployment automation. These are distractions from proving the concept.`,
+      `## Beta: value demonstrated`,
 
-      `**Value defense at alpha:** Define what "done" means for the project. What problem does this solve? Who is it for? Write it down. If you can't articulate the value proposition now, velocity will carry you away from it. This is where "move fast and figure it out later" starts accumulating invisible debt — not code debt, value debt. You're building something and nobody has defined what makes it worth building.`,
+      `Everything works end-to-end but isn't hardened. Direction solidifies as much as it's discovered — you can see what the product actually is, caveats and holes included. The planning stack shifts from exploration to refinement.`,
 
-      `## Beta: no more placeholders`,
-
-      `**Defining trait:** All placeholders are replaced with real implementations. Large planning stack remains. The system works end-to-end but isn't hardened.`,
-
-      `**The job:** Complete the surface area. Every feature has a real implementation, even if it's rough. The planning stack is about refinement, not discovery.`,
-
-      `**What to do now:**
+      `**Do now:**
 - Replace every stub with a working implementation.
-- Full test coverage of core paths — not edge cases yet, but the happy path must be verified.
-- API contracts stabilize. Consumers can start building against them.
-- Demo everything. If you can't demo it, it's not beta — it's still alpha with fewer TODOs.`,
+- Happy-path test coverage on all core features.
+- Stabilize API contracts.
+- Demo everything. If you can't demo it, it's alpha with fewer TODOs.`,
 
-      `**What not to do:** Ship to real users with real data. The system works, but it hasn't proven it's responsible with what it's given.`,
+      `**Don't:** Ship to real users with real data. The system works but hasn't proven it's responsible with what it's given.`,
 
-      `**Value defense at beta:** Revisit the value proposition. Now that the system exists end-to-end, does it actually deliver what was promised? This is where you discover that the feature you thought was the point isn't — or that the real value is in something you built as a side effect. Adjust the definition of value. Don't let momentum carry you past this checkpoint.`,
+      `**Value defense:** Value is explored in beta. The system exists end-to-end — does it deliver what was dreamed of, or did the real value turn out to be something you built as a side effect? Reconcile what you set out to build with what you actually built. Adjust. Don't let momentum carry you past this checkpoint.`,
 
       `## Fledgling: data responsibility`,
 
-      `**Defining trait:** The system handles real data — or is about to. The question shifts from "does it work?" to "can it be trusted?"`,
+      `The question shifts from "does it work?" to "can it be trusted?"`,
 
-      `**The job:** Prove the system is responsible with data. Backup strategies, data integrity checks, migration paths, audit trails. This is where you earn the right to hold someone's information.`,
-
-      `**What to do now:**
-- Backup and restore procedures — tested, not just documented.
-- Data migration strategy. Schema changes must be non-destructive.
+      `**Do now:**
+- Backup and restore — tested, not documented.
+- Non-destructive schema migrations.
 - Audit logging for sensitive operations.
-- Input validation hardened. Edge cases in data handling become real bugs now.
-- Privacy and retention policies if handling PII.`,
+- Harden input validation. Edge cases are real bugs now.`,
 
-      `**What not to do:** Invite users before backups work. "We'll add backups later" is the fledgling-stage equivalent of deleting tests — the agent rationalizes it, the project pays for it.`,
+      `**Don't:** Invite users before backups work. "We'll add backups later" is the fledgling-stage equivalent of deleting tests.`,
 
-      `**Value defense at fledgling:** The value proposition now includes trust. Users give you their data. If you lose it, the value is negative — you've actively harmed them. Data responsibility is value defense. Every backup test, every migration dry-run, every audit log entry is defending the value you've promised.`,
+      `**Value defense:** Users give you their data. Lose it and the value is negative. Every backup test, every migration dry-run is defending the value you promised.`,
 
       `## Toddler: stability and observability`,
 
-      `**Defining trait:** Real users, real data, real consequences. The system needs to stay up, perform consistently, and recover from failures.`,
+      `Real users, real data, real consequences. "It works on my machine" dies here.`,
 
-      `**The job:** Make the system observable and stable. Performance metrics, deployment strategies, monitoring, alerting. This is where "it works on my machine" dies.`,
-
-      `**What to do now:**
-- Performance baselines. Response times, query counts, memory usage — measured, not guessed.
-- Deployment automation. Repeatable, rollback-capable deploys.
+      `**Do now:**
+- Performance baselines — measured, not guessed.
+- Repeatable, rollback-capable deploys.
 - Health checks and uptime monitoring.
-- Error tracking with actionable alerts — not a dashboard nobody watches.
-- Load testing against realistic traffic patterns.
-- Backup stories verified under production conditions.`,
+- Actionable error alerts, not dashboards nobody watches.
+- Load testing against realistic traffic.`,
 
-      `**What not to do:** Add features at the expense of stability. The toddler stage is about making what exists reliable, not making it bigger.`,
+      `**Don't:** Add features at the expense of stability. Make what exists reliable, not bigger.`,
 
-      `**Value defense at toddler:** Value is now measurable. Users are using the system — you can see what they use, what they ignore, what breaks. Performance regressions destroy value silently. A feature that works but takes 8 seconds is a feature that drives users away. Metrics are value defense. Outlier reporting is value defense. Every KPI threshold you set is a line drawn around the value you've built.`,
+      `**Value defense:** A feature that works but takes 8 seconds is a feature that drives users away. Performance regressions destroy value silently. Every KPI threshold is a line drawn around the value you've built.`,
 
       `## Adolescent: distribution and scale`,
 
-      `**Defining trait:** Single-server architecture hits its limits. The system needs to serve more users, more locations, more load than one box can handle.`,
+      `Single-server architecture hits its limits. The system grows from one process to a coordinated set of services.`,
 
-      `**The job:** Multi-server deployments, distributed metrics, service boundaries. The system grows from a single process to a coordinated set of services.`,
+      `**Do now:**
+- Decompose where load demands it — not everywhere.
+- Centralized logging. You can't debug distributed systems by SSH-ing into one box.
+- API versioning. Downstream consumers can't absorb breaking changes at your pace.
+- Capacity planning from growth data, not guesses.`,
 
-      `**What to do now:**
-- Service decomposition where load demands it — not everywhere, just where single-server bottlenecks appear.
-- Distributed metrics and centralized logging. You can't debug distributed systems by SSH-ing into one box.
-- Multi-region or multi-server deployment strategies.
-- API versioning becomes critical — downstream consumers can't absorb breaking changes at your deployment pace.
-- Capacity planning based on growth data, not guesses.`,
+      `**Don't:** Distribute prematurely. If one server handles your load, the complexity of distribution is pure cost. Adolescent is a stage you enter because the toddler outgrew its environment, not because microservices are fashionable.`,
 
-      `**What not to do:** Distribute prematurely. If one server handles your load, the complexity of distribution is pure cost. Adolescent is a stage you enter because the toddler outgrew its environment, not because microservices are fashionable.`,
+      `**Value defense:** A system that can't handle its own success destroys the value it created. Over-engineering for scale you don't have yet also destroys value. Scale to measured need.`,
 
-      `**Value defense at adolescent:** Scale failures are value failures. A system that can't handle its own success is destroying the value it created. But over-engineering for scale you don't have yet is also value destruction — it's spending resources on infrastructure instead of the product. Value defense at this stage means scaling in response to measured need, not anticipated need.`,
+      `## Prime: unsolved problems`,
 
-      `## Prime: custom solutions to unsolved problems`,
+      `Fundamentals are solid. What's left are the hard problems unique to your domain that nobody else has solved. Very few projects get here.`,
 
-      `**Defining trait:** The fundamentals are solid. The system is stable, observable, scalable, data-responsible. What's left are the hard problems — the ones unique to your domain that nobody else has solved.`,
+      `**Do now:**
+- Identify pain points no existing tool addresses.
+- Build custom solutions from data and experience accumulated through prior stages.
+- Open source the reusable parts.`,
 
-      `**The job:** Build the things that make this system uniquely valuable. Custom algorithms, novel UX patterns, domain-specific optimizations that can't be bought off the shelf. Very few projects reach this stage.`,
+      `**Why so few projects reach this:** Most get stuck in perpetual toddler or adolescent — forever chasing stability or scale. The projects that reach prime did the boring work at every prior stage. They earned interesting work by building a foundation that doesn't demand constant attention.`,
 
-      `**What to do now:**
-- Identify the unique pain points your users have that no existing tool addresses.
-- Build custom solutions informed by the data and experience accumulated through prior stages.
-- Contribute to the ecosystem — open source the reusable parts, publish the patterns.
-- This is where deep domain expertise meets engineering capability.`,
+      `**Value defense:** The custom solution is the value. One architectural regression can collapse months of domain-specific engineering. Document why it exists and what it solves that alternatives don't.`,
 
-      `**Why few projects get here:** Most projects get stuck in perpetual toddler or adolescent — forever chasing stability or scale, never reaching the stage where they solve truly novel problems. The projects that reach prime did the boring work at every prior stage. They earned the right to do interesting work by building a foundation that doesn't demand constant attention.`,
+      `## Maintenance: preservation`,
 
-      `**Value defense at prime:** The value is the custom solution itself. Defend it by documenting why it exists, how it works, and what problem it solves that alternatives don't. Prime-stage work is the hardest to replace and the easiest to lose — one architectural regression can collapse months of domain-specific engineering.`,
+      `Feature-complete. Development shifts from building to preserving.`,
 
-      `## Maintenance: defending what exists`,
+      `**Do now:**
+- Automated dependency updates.
+- Security vulnerability scanning.
+- Triage: bugs that threaten value vs. cosmetic.
+- Keep the test suite green. Maintenance-mode test rot is how systems become unmaintainable.`,
 
-      `**Defining trait:** The system is feature-complete for its current scope. Development shifts from building to preserving.`,
+      `**Don't:** Add features without re-entering an earlier stage. Maintenance is stable because scope is fixed. New features mean you're back in toddler, whether you admit it or not.`,
 
-      `**The job:** Security patches, dependency updates, vulnerability response, issue triage. The system runs, and the job is keeping it running safely.`,
+      `**Value defense:** Every unpatched vulnerability is value at risk. Every ignored dependency update is a future emergency. Maintenance isn't glamorous. It's where value is most easily destroyed by neglect.`,
 
-      `**What to do now:**
-- Dependency update cadence. Automated where possible, reviewed where necessary.
-- Security vulnerability scanning and response procedures.
-- Issue triage — distinguish between bugs that threaten value and bugs that are cosmetic.
-- Keep the test suite green. Maintenance-mode test rot is how systems become unmaintainable.
-- Deprecation planning for the eventual replacement.`,
+      `## The thread`,
 
-      `**What not to do:** Add features without re-entering an earlier stage. Maintenance mode is stable because the scope is fixed. New features change the scope, which means the project is no longer in maintenance — it's back in toddler or adolescent, and it needs the infrastructure of that stage.`,
+      `- At alpha, value is dreamed of. **Define it.**
+- At beta, value is explored. **Test it.**
+- At fledgling, value includes trust. **Earn it.**
+- At toddler, value is measurable. **Measure it.**
+- At adolescent, value is at scale. **Sustain it.**
+- At prime, value is unique. **Protect it.**
+- At maintenance, value is complete. **Preserve it.**`,
 
-      `**Value defense at maintenance:** The value is fully realized and the job is preservation. Every unpatched vulnerability is value at risk. Every ignored dependency update is a future emergency. Maintenance is not glamorous, but it's where value is most easily destroyed by neglect.`,
+      `You can ship ten features a day and destroy value with every one. Velocity is not value. Shipping is not progress.`,
 
-      `## Value defense: the thread through every stage`,
-
-      `At every stage, the question is the same: what is the value this project delivers, and how do we prove it's being preserved?`,
-
-      `- At alpha, value is a hypothesis. Define it.
-- At beta, value is testable. Verify it.
-- At fledgling, value includes trust. Earn it.
-- At toddler, value is measurable. Measure it.
-- At adolescent, value is at scale. Sustain it.
-- At prime, value is unique. Protect it.
-- At maintenance, value is complete. Preserve it.`,
-
-      `High velocity without value defense is the most dangerous failure mode in LLM-driven development. You can ship ten features a day and destroy value with every one — features nobody asked for, regressions in features people depend on, performance degradation that makes the system worse to use. Velocity is not value. Shipping is not progress. The only progress is defended, measured, verified value delivery.`,
-
-      `Low observability compounds the problem. If you can't see whether value is being preserved, you can't defend it. Metrics, KPI outlier reporting, test coverage, demo recordings — these aren't overhead. They're the instruments that tell you whether your velocity is building value or destroying it.`,
-
-      `Know your stage. Do the work that stage demands. Defend the value at every step. That's how projects reach prime instead of dying fast.`,
+      `Know your stage. Do that stage's job. Defend value at every step.`,
     ],
     compliancePrompt: `Audit this project's lifecycle stage and readiness for progression. Every project stage has specific requirements — skipping them creates debt that compounds. Identify the project's current stage and check readiness for the next. Report PASS, FAIL, or N/A with a one-line explanation:
 

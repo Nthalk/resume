@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Highlight, themes } from "prism-react-renderer";
 import { posts } from "./blog";
+import type { BlogPost } from "./blog";
 
 function renderMarkdown(text: string) {
   const lines = text.split("\n");
@@ -36,9 +37,11 @@ function renderMarkdown(text: string) {
         </Highlight>
       );
     } else if (line.startsWith("## ")) {
+      const text = line.slice(3);
+      const id = text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
       elements.push(
-        <h3 key={i} className="blog-post__h3">
-          {line.slice(3)}
+        <h3 key={i} id={id} className="blog-post__h3">
+          {text}
         </h3>
       );
     } else if (line.startsWith("- ")) {
@@ -109,21 +112,78 @@ function ComplianceCheck({ prompt }: { prompt: string }) {
   );
 }
 
-function PostView({ post }: { post: (typeof posts)[0] }) {
+function readingTime(post: BlogPost): number {
+  const words = post.content.join(" ").split(/\s+/).length;
+  return Math.max(1, Math.round(words / 230));
+}
+
+function extractHeadings(post: BlogPost): { text: string; id: string }[] {
+  const headings: { text: string; id: string }[] = [];
+  for (const block of post.content) {
+    for (const line of block.split("\n")) {
+      if (line.startsWith("## ")) {
+        const text = line.slice(3);
+        const id = text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+        headings.push({ text, id });
+      }
+    }
+  }
+  return headings;
+}
+
+function ReadingProgress() {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(scrollable > 0 ? Math.min(100, (window.scrollY / scrollable) * 100) : 0);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return <div className="reading-progress" style={{ width: `${progress}%` }} />;
+}
+
+function TableOfContents({ headings }: { headings: { text: string; id: string }[] }) {
+  if (headings.length < 2) return null;
   return (
-    <article className="blog-post">
-      <Link to="/blog" className="blog-post__back">
-        &larr; All posts
-      </Link>
-      <time className="blog-post__date">{post.date}</time>
-      <h1 className="blog-post__title">{post.title}</h1>
-      <div className="blog-post__body">
-        {post.content.map((block, i) => (
-          <div key={i}>{renderMarkdown(block)}</div>
+    <nav className="blog-toc">
+      <span className="blog-toc__label">Jump to</span>
+      <ul className="blog-toc__list">
+        {headings.map((h) => (
+          <li key={h.id}>
+            <a href={`#${h.id}`} className="blog-toc__link">{h.text}</a>
+          </li>
         ))}
-      </div>
-      <ComplianceCheck prompt={post.compliancePrompt} />
-    </article>
+      </ul>
+    </nav>
+  );
+}
+
+function PostView({ post }: { post: (typeof posts)[0] }) {
+  const headings = extractHeadings(post);
+  const minutes = readingTime(post);
+
+  return (
+    <>
+      <ReadingProgress />
+      <article className="blog-post">
+        <Link to="/blog" className="blog-post__back">
+          &larr; All posts
+        </Link>
+        <time className="blog-post__date">{post.date} &middot; {minutes} min read</time>
+        <h1 className="blog-post__title">{post.title}</h1>
+        <TableOfContents headings={headings} />
+        <div className="blog-post__body">
+          {post.content.map((block, i) => (
+            <div key={i}>{renderMarkdown(block)}</div>
+          ))}
+        </div>
+        <ComplianceCheck prompt={post.compliancePrompt} />
+      </article>
+    </>
   );
 }
 
@@ -143,7 +203,7 @@ function PostList() {
             to={`/blog/${post.slug}`}
             className="blog-card"
           >
-            <time className="blog-card__date">{post.date}</time>
+            <time className="blog-card__date">{post.date} &middot; {readingTime(post)} min</time>
             <h2 className="blog-card__title">{post.title}</h2>
             <p className="blog-card__summary">{post.summary}</p>
           </Link>
