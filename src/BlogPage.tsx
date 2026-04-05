@@ -59,6 +59,40 @@ function renderMarkdown(text: string) {
         </ul>
       );
       i = j - 1;
+    } else if (line.startsWith("|")) {
+      const tableLines: string[] = [];
+      let j = i;
+      while (j < lines.length && lines[j].startsWith("|")) {
+        tableLines.push(lines[j]);
+        j++;
+      }
+      const parseRow = (row: string) =>
+        row.split("|").slice(1, -1).map((c) => c.trim());
+      const header = parseRow(tableLines[0]);
+      const isSeparator = (row: string) => /^\|[\s\-:|]+\|$/.test(row);
+      const bodyStart = tableLines.length > 1 && isSeparator(tableLines[1]) ? 2 : 1;
+      const bodyRows = tableLines.slice(bodyStart).map(parseRow);
+      elements.push(
+        <table key={i} className="blog-post__table">
+          <thead>
+            <tr>
+              {header.map((cell, ci) => (
+                <th key={ci} dangerouslySetInnerHTML={{ __html: inlineFormat(cell) }} />
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {bodyRows.map((row, ri) => (
+              <tr key={ri}>
+                {row.map((cell, ci) => (
+                  <td key={ci} dangerouslySetInnerHTML={{ __html: inlineFormat(cell) }} />
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      );
+      i = j - 1;
     } else {
       elements.push(
         <p
@@ -74,8 +108,11 @@ function renderMarkdown(text: string) {
 
 function inlineFormat(text: string): string {
   return text
+    .replace(/~~(.+?)~~/g, "<del>$1</del>")
     .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-    .replace(/`(.+?)`/g, '<code class="blog-post__code">$1</code>');
+    .replace(/`(.+?)`/g, '<code class="blog-post__code">$1</code>')
+    .replace(/\[(.+?)\]\((https?:\/\/.+?)\)/g, '<a href="$2" class="blog-post__link" target="_blank" rel="noopener noreferrer">$1</a>')
+    .replace(/\[(.+?)\]\((\/[^\)]*)\)/g, '<a href="$2" class="blog-post__link">$1</a>');
 }
 
 function ComplianceCheck({ prompt }: { prompt: string }) {
@@ -175,9 +212,14 @@ function PostView({ post }: { post: (typeof posts)[0] }) {
         </Link>
         <time className="blog-post__date">{post.date} &middot; {minutes} min read</time>
         <h1 className="blog-post__title">{post.title}</h1>
+        {post.content.length > 0 && !post.content[0].startsWith("## ") && (
+          <div className="blog-post__tldr">
+            {renderMarkdown(post.content[0])}
+          </div>
+        )}
         <TableOfContents headings={headings} />
         <div className="blog-post__body">
-          {post.content.map((block, i) => (
+          {post.content.slice(post.content.length > 0 && !post.content[0].startsWith("## ") ? 1 : 0).map((block, i) => (
             <div key={i}>{renderMarkdown(block)}</div>
           ))}
         </div>

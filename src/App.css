@@ -397,6 +397,31 @@
   color: var(--text-h);
 }
 
+/* ==================== TABLE ==================== */
+.blog-post__table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 16px;
+  font-size: 0.9rem;
+}
+
+.blog-post__table th,
+.blog-post__table td {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+
+.blog-post__table th {
+  background: var(--bg-card);
+  color: var(--text-h);
+  font-weight: 600;
+}
+
+.blog-post__table td {
+  color: var(--text);
+}
+
 /* ==================== COMPLIANCE CHECK ==================== */
 .compliance-check {
   margin-top: 48px;
