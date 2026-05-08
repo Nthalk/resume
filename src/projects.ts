@@ -47,18 +47,18 @@ export const projects = [
     ],
   },
   {
-    slug: "autowork",
-    name: "Autowork",
-    tagline: "Multi-agent SDLC orchestration — rebuilt after escaping a vibe-coding local minimum",
+    slug: "zdx",
+    name: "zdx",
+    tagline: "Self-hosted developer-experience platform for human + LLM collaborative development",
     summary:
-      "Autowork automates the full software development lifecycle — discover, triage, plan, code, review, and submit — by coordinating parallel Claude Code sessions in isolated git worktrees. The original version became a cautionary tale: rapid AI-assisted development accumulated tech debt faster than it could be recognized, driving the architecture into a local minimum. The current version is a ground-up rewrite applying those lessons: channel-based agent communication replaces the tightly-coupled state machine, stateless event sourcing replaces mutable state, and clear separation of concerns makes the system auditable at speed. Agents (admin, orchestrator, worker) communicate through typed channels with WebSocket pub/sub. LLM orchestration runs through the Koog framework with tshell for tool execution.",
-    tech: ["Kotlin", "Spring Boot", "React", "PostgreSQL", "Koog", "tshell", "Git Worktrees"],
+      "zdx is a single-portal, single-CLI platform for tracking issues, features, themes, and goals; managing work queues; and ingesting observability data (timings, errors, logs, counters) — designed around human and LLM agents working the same backlog. Go API server (huma/chi, pgx) and Cobra CLI share a sqlc-generated PostgreSQL data layer. The React 19 UI runs on Vite, MUI, and TanStack Router, with realtime updates over WebSockets backed by Valkey and vector similarity search via pgvector.",
+    tech: ["Go", "huma/chi", "Cobra", "React 19", "Vite", "MUI", "TanStack Router", "PostgreSQL", "sqlc", "pgvector", "WebSockets", "Valkey"],
     highlights: [
-      "Full SDLC pipeline: DISCOVER → TRIAGE → WORK → REVIEW → REBASE → SUBMIT",
-      "IRC-style channel topology — decoupled agent communication replacing tightly-bound state machine",
-      "Stateless event-sourced architecture — auditable, replayable, no hidden mutable state",
-      "Git worktree isolation per task — concurrent branches without conflicts",
-      "Case study: v1's unchecked AI velocity created architectural debt that forced a full rewrite",
+      "Unified portal + CLI: same backlog usable by humans and LLM agents",
+      "Tracks issues, features, themes, and goals with work-queue claim semantics (`dx todo take`)",
+      "Observability ingest: timings, errors, logs, counters in the same system as the work",
+      "sqlc-generated data layer keeps Go server and CLI in sync with PostgreSQL",
+      "Realtime UI via WebSockets + Valkey; vector search via pgvector",
     ],
   },
   {
@@ -90,6 +90,22 @@ export const projects = [
       "Stream parser converting JSON events to typed domain model",
       "Embedded MCP HTTP server for bidirectional tool calling",
       "Conversation tracker for session resumption without replay",
+    ],
+  },
+  {
+    slug: "sqlc-go-codegen-metaquery",
+    name: "sqlc-go-codegen-metaquery",
+    repo: "https://github.com/IodeSystems/sqlc-go-codegen-metaquery",
+    tagline: "Fork of sqlc-gen-go that makes static queries hoistable: typed runtime filters, ordering, pagination, aggregation",
+    summary:
+      "A fork of sqlc-gen-go that emits per-query metadata alongside the usual sqlc output, plus a small runtime that wraps any query as a CTE. Filters, ordering, pagination, column discards, and aggregations compose at runtime against the original query's output columns, with column-typed builders catching op/type mismatches at compile time and a JSON-roundtrippable filter surface for HTTP and admin UIs. Closes the long-standing 'sqlc + dynamic queries' gap without giving up sqlc's compile-time SQL validation.",
+    tech: ["Go", "sqlc", "pgx/v5", "PostgreSQL", "WASM Plugin"],
+    highlights: [
+      "Hoists static sqlc queries as CTEs for safe runtime composition without modifying the SQL",
+      "Typed column refs (TextCol, IntCol, …) make column typos and op/type mismatches compile errors",
+      "JSON-roundtrippable filter surface validated against per-query schema before any SQL runs",
+      "Three emission tiers (meta, wrap, cols) — pay only for what you use",
+      "Drop-in compatible with stock sqlc-gen-go; published as a sqlc WASM plugin",
     ],
   },
   {

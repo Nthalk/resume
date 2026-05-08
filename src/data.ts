@@ -17,7 +17,7 @@ export const resume = {
       dates: "Dec 2022 – Present",
       bullets: [
         "Built Veliode, a multi-tenant service business platform (scheduling, booking, billing, POS, franchise management) with spec-driven development tooling — feature maps, dual-driver test specs (API + UI), automated demo recording, and CLI-driven progress tracking replacing traditional project management",
-        "Built multi-agent orchestration platform (autowork) automating the full SDLC — discover, triage, plan, code, review, submit — enabling solo delivery at the throughput of a small team",
+        "Built zdx, a self-hosted developer-experience platform unifying issue/feature/theme/goal tracking, work queues, and observability ingest behind a single portal and CLI — designed for humans and LLM agents working the same backlog",
         "Designed quality infrastructure for high-velocity LLM development: automated staging pipelines, per-test metrics with branch-level baselines, artifact servers for test logs/videos/KPIs, and outlier-only reporting for efficient batch review",
         "Created clown-check, a pre-commit hook running a separate LLM session as code reviewer — catches deleted tests, disabled validation, and regressions the authoring session rationalizes away",
         "Created tshell, a computation framework for LLMs — optimized tool schemas to replace 20+ MCP tools with a single eval interface, reducing prompt context cost by 95% — published to Maven Central",
@@ -80,7 +80,7 @@ export const resume = {
     },
   ],
   skills: {
-    Languages: "Java, Kotlin, JavaScript, TypeScript, PHP, Hack, Ruby, SQL",
+    Languages: "Java, Kotlin, JavaScript, TypeScript, Go, PHP, Hack, Ruby, SQL",
     "Frameworks & Tools": "Spring, Gradle, React, Next.js, Rails, Antlr",
     "AI & Agents": "Claude API, MCP, Multi-Agent Orchestration, Local LLMs, Prompt/Tool Schema Optimization, Session Management, LLM Security",
     Databases: "MySQL, Oracle, PostgreSQL, Redis, DynamoDB, Neo4j",
