@@ -1,5 +1,5 @@
 ---
-title: "Hoist the Query"
+title: "sqlc: wontfix(handle aggregation, ordering, pagination)"
 slug: "hoist-the-query"
 date: "2026-05-08"
 summary: "sqlc users have been asking for safe runtime composition (pagination, sort, column discards, aggregation) for years. The accepted answer is always 'use a query builder.' I forked it instead."
